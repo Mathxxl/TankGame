@@ -1,4 +1,7 @@
-﻿using Entities.Player.Player_Systems;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Entities.Player.Player_Systems;
 using UnityEngine;
 
 namespace Entities.Player.Upgrades
@@ -16,7 +19,6 @@ namespace Entities.Player.Upgrades
         protected int Level;
         protected UpgradeData.UpgradeStage CurrentStage;
         
-        //NOTE : maybe should be hidden in inspector
         [HideInInspector] public PlayerUpgradesManager manager;
         public World.WorldType ThisWorldType => _worldType;
         public bool ThisIsStatic => _isStatic;
@@ -40,6 +42,13 @@ namespace Entities.Player.Upgrades
         public void OnUpgradeObtained()
         {
             UpgradeObtained();
+            
+            CurrentStage = data.stages[Level];
+            _isStatic = CurrentStage.isStatic;
+            if (_isStatic)
+            {
+                ApplyValues();
+            }
         }
 
         public void OnUpgradeUpdate()
@@ -65,5 +74,47 @@ namespace Entities.Player.Upgrades
         protected virtual void UpgradeObtained(){}
         protected virtual void UpgradeUpdate(){}
         protected virtual void UpgradeLevelUp(){}
+
+        protected UpgradeData.StageValuesHolder? GetValues(UpgradeData.UpgradeValuesType type)
+        {
+            foreach (var val in CurrentStage.values.Where(val => val.valuesType == type))
+            {
+                return val;
+            }
+            return null;
+        }
+
+        protected List<UpgradeData.StageValuesHolder> GetAllValues(UpgradeData.UpgradeValuesType type)
+        {
+            return CurrentStage.values.Where(val => val.valuesType == type).ToList();
+        }
+
+        protected void ApplyValues()
+        {
+            foreach(var (type, fvalue, pvalue) in CurrentStage.values)
+            {
+                switch (type)
+                {
+                    case UpgradeData.UpgradeValuesType.Damages:
+                        if (fvalue > 0) manager.ThisEntity.Events.OnImproveDamagesFixed?.Invoke(fvalue);
+                        if (pvalue > 0) manager.ThisEntity.Events.OnImproveDamages?.Invoke(pvalue);
+                        break;
+                    case UpgradeData.UpgradeValuesType.Heal:
+                        if (fvalue > 0) manager.ThisEntity.Events.OnImproveHealFixed?.Invoke(fvalue);
+                        if (pvalue > 0) manager.ThisEntity.Events.OnImproveHeal?.Invoke(pvalue);;
+                        break;
+                    case UpgradeData.UpgradeValuesType.Defense:
+                        if (fvalue > 0) manager.ThisEntity.Events.OnImproveDefenseFixed?.Invoke(fvalue);
+                        if (pvalue > 0) manager.ThisEntity.Events.OnImproveDefense?.Invoke(pvalue);;
+                        break;
+                    case UpgradeData.UpgradeValuesType.Speed:
+                        if (fvalue > 0) manager.ThisEntity.Events.OnImproveSpeedFixed?.Invoke(fvalue);
+                        if (pvalue > 0) manager.ThisEntity.Events.OnImproveSpeed?.Invoke(pvalue);;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
     }
 }

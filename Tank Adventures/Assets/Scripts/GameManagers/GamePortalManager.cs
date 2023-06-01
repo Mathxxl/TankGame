@@ -66,13 +66,16 @@ namespace GameManagers
         
         public void GeneratePortals()
         {
+            var memList = new List<int>();
+            
             for (var i = 0; i < numberOfChoices; i++)
             {
                 var portalObject = Instantiate(portalPrefab, transform);
                 
                 //Add to go world to the portal
 
-                var randomValue = typesPonderation.GetRandom(); //TODO : Have only one choice per world
+                var randomValue = typesPonderation.GetRandomWithExclusion(memList);
+                typesPonderation.AddWeight(randomValue);
                 var portal = portalObject.GetComponent<Portal>();
                 var type = _types[randomValue];
                 Debug.Log($"Portal type = {type}");

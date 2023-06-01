@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ed7098bed546c88bf8abaa9619067d, type: 3}
+  m_Name: Horror02
+  m_EditorClassIdentifier: 
+  worldType: 2
+  stages:
+  - upgradeName: "T\xE9n\xE8bres"
+    description: "Ajoute une zone de d\xE9g\xE2ts \xE0 l'impact"
+    technicalDescription: "La zone est de taille 3 et inflige 10% de l'attaque en
+      d\xE9g\xE2ts pendant 3 secondes, au rythme d'un coup par seconde"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 5
+      fixedValue: 3
+      percentageValue: 0
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.1
+    - valuesType: 4
+      fixedValue: 3
+      percentageValue: 0
+    - valuesType: 4
+      fixedValue: 1
+      percentageValue: 0
+  - upgradeName: "T\xE9n\xE8bres+"
+    description: "Augmente les d\xE9g\xE2ts de T\xE9n\xE8bres"
+    technicalDescription: "La zone est de taille 4 et inflige 10% de l'attaque en
+      d\xE9g\xE2ts pendant 3 secondes, au rythme de 2 coups par seconde"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 5
+      fixedValue: 5
+      percentageValue: 0
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.1
+    - valuesType: 4
+      fixedValue: 3
+      percentageValue: 0
+    - valuesType: 4
+      fixedValue: 2
+      percentageValue: 0
+  - upgradeName: Abysses
+    description: "Augmente les d\xE9g\xE2ts de T\xE9n\xE8bres+"
+    technicalDescription: "La zone est de taille 5 et inflige 10% de l'attaque en
+      d\xE9g\xE2ts pendant 3 secondes, au rythme de 2 coups par seconde"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 5
+      fixedValue: 5
+      percentageValue: 0
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.1
+    - valuesType: 4
+      fixedValue: 3
+      percentageValue: 0
+    - valuesType: 4
+      fixedValue: 3
+      percentageValue: 0

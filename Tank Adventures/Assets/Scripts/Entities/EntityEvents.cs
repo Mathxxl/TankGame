@@ -58,6 +58,22 @@ namespace Entities
         public Action<Upgrade> OnUpgradeSelected;
         public Action<World.WorldType> OnFullUpgradeOnRoad;
         
+        //Upgrades Specifics
+        public Action<float> OnImproveDamages;
+        public Action<float> OnReduceDamages;
+        public Action<float> OnImproveHeal;
+        public Action<float> OnReduceHeal;
+        public Action<float> OnImproveDamageForOneHit;
+        public Action<float> OnImproveDamagesFixed;
+        public Action<float> OnReduceDamagesFixed;
+        public Action<float> OnImproveHealFixed;
+        public Action<float> OnReduceHealFixed;
+        public Action<float> OnImproveDamageForOneHitFixed;
+        public Action<float> OnImproveDefense;
+        public Action<float> OnImproveDefenseFixed;
+        public Action<float> OnImproveSpeed;
+        public Action<float> OnImproveSpeedFixed;
+        
         //Ground Events
         public Action OnGroundTouched;
         public Action OnGroundLeft;

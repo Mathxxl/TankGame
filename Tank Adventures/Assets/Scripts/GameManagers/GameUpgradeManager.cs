@@ -35,7 +35,7 @@ namespace GameManagers
         {
             if (_upgradeDictionary.ContainsKey(worldType)) return _upgradeDictionary[worldType];
             
-            Debug.LogWarning($"Try to get upgrade from undefined world {worldType}");
+            Debug.LogWarning($"No upgrades found for world {worldType}");
             return null;
         }
     }

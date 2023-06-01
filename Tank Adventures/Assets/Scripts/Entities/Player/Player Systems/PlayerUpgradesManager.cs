@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities.Player.Upgrades;
@@ -14,10 +13,20 @@ namespace Entities.Player.Player_Systems
         #region Attributes
 
         private List<Upgrade> _upgrades;
+        [HideInInspector] public UpgradeEvents Events = new UpgradeEvents();
+        public Entity ThisEntity => entity;
 
         #endregion
 
         #region Methods
+
+        private void OnEnable()
+        {
+        }
+
+        private void OnDisable()
+        {
+        }
 
         protected override void Awake()
         {

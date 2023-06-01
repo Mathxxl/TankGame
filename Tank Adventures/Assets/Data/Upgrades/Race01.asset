@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ed7098bed546c88bf8abaa9619067d, type: 3}
+  m_Name: Race01
+  m_EditorClassIdentifier: 
+  worldType: 3
+  stages:
+  - upgradeName: I'm Speed
+    description: "Augmente la vitesse de d\xE9placement"
+    technicalDescription: Vitesse +50%
+    icon: {fileID: 0}
+    isStatic: 1
+    values:
+    - valuesType: 3
+      fixedValue: 0
+      percentageValue: 0.5
+  - upgradeName: Fast & Furious
+    description: "Augmente la vitesse de d\xE9placement"
+    technicalDescription: Vitesse +75%
+    icon: {fileID: 0}
+    isStatic: 1
+    values:
+    - valuesType: 3
+      fixedValue: 0
+      percentageValue: 1
+  - upgradeName: Racing Queen
+    description: "Augmente la vitesse de d\xE9placement"
+    technicalDescription: Vitesse +75%
+    icon: {fileID: 0}
+    isStatic: 1
+    values:
+    - valuesType: 3
+      fixedValue: 0
+      percentageValue: 2

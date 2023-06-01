@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ed7098bed546c88bf8abaa9619067d, type: 3}
+  m_Name: Horror01
+  m_EditorClassIdentifier: 
+  worldType: 2
+  stages:
+  - upgradeName: Vampire
+    description: "Les attaques qui infligent des d\xE9g\xE2ts rendent \xE9galement
+      de la vie"
+    technicalDescription: "15% des d\xE9g\xE2ts inflig\xE9s sont rendus sous forme
+      de vies"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 1
+      fixedValue: 0
+      percentageValue: 0.15
+  - upgradeName: Vampire+
+    description: "Les d\xE9g\xE2ts et la valeur de soin sont augment\xE9s"
+    technicalDescription: "D\xE9g\xE2ts totaux +10%; vol de vie \xE0 20%"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.1
+    - valuesType: 1
+      fixedValue: 0
+      percentageValue: 0.2
+  - upgradeName: Dracula
+    description: "D\xE9truire un ennemi rend une quantit\xE9 de vie plus importante"
+    technicalDescription: "D\xE9g\xE2ts +20%;  Vol de vie \xE0 25%; soin total en
+      cas de destruction \xE0 30% de la vie totale du joueur"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.2
+    - valuesType: 1
+      fixedValue: 0
+      percentageValue: 0.25
+    - valuesType: 1
+      fixedValue: 0
+      percentageValue: 0.3

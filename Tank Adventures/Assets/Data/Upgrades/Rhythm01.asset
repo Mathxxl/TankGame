@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ed7098bed546c88bf8abaa9619067d, type: 3}
+  m_Name: Rhythm01
+  m_EditorClassIdentifier: 
+  worldType: 1
+  stages:
+  - upgradeName: En Rythme
+    description: "Augmente les d\xE9g\xE2ts inflig\xE9s si vous tirez en rythme !"
+    technicalDescription: "Les d\xE9g\xE2ts augmentent de 30% si l'attaque est en
+      rythme"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.3
+  - upgradeName: En Rythme+
+    description: "Les d\xE9g\xE2ts d'En Rythme augmentent"
+    technicalDescription: "D\xE9g\xE2ts +50% si en rythme"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.5
+  - upgradeName: Harmonie
+    description: "Augmente les d\xE9g\xE2ts d'En Rythme+ et ajoute une vague d'\xE9nergie
+      aux attaques rythm\xE9es"
+    technicalDescription: "D\xE9g\xE2ts \xE0 +100%; la vague inflige 10% de l'attaque
+      en d\xE9g\xE2ts"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 1
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0.1

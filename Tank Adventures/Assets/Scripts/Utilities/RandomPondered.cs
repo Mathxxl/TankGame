@@ -87,6 +87,22 @@ namespace Utilities
         }
 
         /// <summary>
+        /// Return a random int with weighting and exclusion list
+        /// </summary>
+        /// <param name="mem">List of values that should not be returned</param>
+        /// <returns></returns>
+        public int GetRandomWithExclusion(List<int> mem)
+        {
+            var value = GetRandom();
+            while (mem.Contains(value))
+            {
+                value = GetRandom();
+            }
+            mem.Add(value);
+            return value;
+        }
+
+        /// <summary>
         /// Add an element to the list of possibilities
         /// </summary>
         /// <param name="newValue">The weighting of the new element. If negative, value will be 0.</param>

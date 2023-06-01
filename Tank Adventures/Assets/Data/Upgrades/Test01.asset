@@ -18,11 +18,17 @@ MonoBehaviour:
     description: Hello World
     icon: {fileID: 0}
     isStatic: 1
+    values:
+    - valuesType: 0
+      fixedValue: 0
+      percentageValue: 0
   - upgradeName: Test Upgrade 02
     description: Goodbye World
     icon: {fileID: 0}
     isStatic: 0
+    values: []
   - upgradeName: Test Upgrade 03
     description: Update World
     icon: {fileID: 0}
     isStatic: 0
+    values: []

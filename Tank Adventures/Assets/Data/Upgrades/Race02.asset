@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ed7098bed546c88bf8abaa9619067d, type: 3}
+  m_Name: Race02
+  m_EditorClassIdentifier: 
+  worldType: 3
+  stages:
+  - upgradeName: Gas Gas Gas
+    description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * 5"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 5
+      percentageValue: 0
+  - upgradeName: Running in the 90s
+    description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * 10"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 10
+      percentageValue: 0
+  - upgradeName: "D\xE9j\xE0-Vu"
+    description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * 20"
+    icon: {fileID: 0}
+    isStatic: 0
+    values:
+    - valuesType: 0
+      fixedValue: 20
+      percentageValue: 0

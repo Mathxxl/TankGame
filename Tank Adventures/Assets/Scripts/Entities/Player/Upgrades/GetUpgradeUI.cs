@@ -49,6 +49,7 @@ namespace Entities.Player.Upgrades
             
             //Get World Upgrades
             var upgrades = upgradeManager.GetUpgradeFromWorld(worldManager.CurrentWorld.Type);
+            if (upgrades == null) return;
             Debug.Log($"{upgrades.Count} upgrades found");
             
             //Creation of Cards

@@ -53,12 +53,12 @@ namespace Entities.Player.Upgrades
 
         private void LevelOne()
         {
-            
+            Debug.Log("Rhythm Upgrade 01 : Level Up - Damages improved");
         }
 
         private void LevelTwo()
         {
-            
+            //TODO : vague d'énergie
         }
         
         private void OnShoot()

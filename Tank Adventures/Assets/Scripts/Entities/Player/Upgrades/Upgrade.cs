@@ -89,7 +89,7 @@ namespace Entities.Player.Upgrades
             return CurrentStage.values.Where(val => val.valuesType == type).ToList();
         }
 
-        protected void ApplyValues()
+        private void ApplyValues()
         {
             foreach(var (type, fvalue, pvalue) in CurrentStage.values)
             {
@@ -110,6 +110,10 @@ namespace Entities.Player.Upgrades
                     case UpgradeData.UpgradeValuesType.Speed:
                         if (fvalue > 0) manager.ThisEntity.Events.OnImproveSpeedFixed?.Invoke(fvalue);
                         if (pvalue > 0) manager.ThisEntity.Events.OnImproveSpeed?.Invoke(pvalue);;
+                        break;
+                    case UpgradeData.UpgradeValuesType.Time:
+                        break;
+                    case UpgradeData.UpgradeValuesType.Other:
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

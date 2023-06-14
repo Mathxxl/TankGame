@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Main_Menu
 {
+    /// <summary>
+    /// Manages the main game menu
+    /// </summary>
     public class MainMenuManager : MonoBehaviour //-> Manager ?
     {
         //[SerializedField] private SaveManager saveManager;

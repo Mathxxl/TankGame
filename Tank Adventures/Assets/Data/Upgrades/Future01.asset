@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: Armure Photon
     description: "Augmente la d\xE9fense"
     technicalDescription: "La D\xE9fense augmente de 20%"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 8e58e8d48150a74419e2177d926efa5c, type: 3}
     isStatic: 1
     values:
     - valuesType: 2
@@ -26,7 +26,7 @@ MonoBehaviour:
   - upgradeName: "Mat\xE9riaux Composites"
     description: "Augmente la d\xE9fense"
     technicalDescription: "La D\xE9fense augmente de 50%"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: b37b6da8572367e43983fe06710a04b7, type: 3}
     isStatic: 1
     values:
     - valuesType: 2
@@ -37,7 +37,7 @@ MonoBehaviour:
       automatiquement"
     technicalDescription: "La D\xE9fense augmente de 100%; la probabilit\xE9 de renvoyer
       les projectiles est de 10%"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 8bc36886558906b44bae73579ba82606, type: 3}
     isStatic: 0
     values:
     - valuesType: 2

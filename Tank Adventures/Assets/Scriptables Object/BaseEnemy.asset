@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Basic Enemy
   lifePoint: 3
+  attack: 1
+  attackSpeed: 1.2
+  defense: 0
+  speed: 1

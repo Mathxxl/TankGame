@@ -3,6 +3,14 @@ using UnityEngine;
 
 namespace Entities.Player.Upgrades
 {
+    /// <summary>
+    /// Upgrade 02 of Race World
+    /// </summary>
+    /// <remarks>
+    /// Stage 1 : Increase damages with speed <br/>
+    /// Stage 2 : Increase damages with speed <br/>
+    /// Stage 3 : Increase damages with speed
+    /// </remarks>
     public class RaceUpgrade02 : Upgrade
     {
         protected override void UpgradeObtained()
@@ -22,13 +30,18 @@ namespace Entities.Player.Upgrades
 
         private void OnDisable()
         {
-            manager.ThisEntity.Events.OnPerformingAttack -= DamagesWithSpeed;
+            if(manager != null) manager.ThisEntity.Events.OnPerformingAttack -= DamagesWithSpeed;
         }
 
         private void DamagesWithSpeed()
         {
             //Get rigidbody
-            if (!manager.ThisEntity.TryGetComponent(out Rigidbody rb)) return;
+            if (!manager.ThisEntity.TryGetComponent(out Rigidbody rb))
+            {
+                Debug.Log("NO RB");
+                return;
+            }
+
             //Get Speed
             var speed = rb.velocity.magnitude;
             Debug.Log($"Damages with speed : speed = {speed}");

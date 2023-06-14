@@ -5,6 +5,14 @@ using UnityEngine;
 
 namespace Entities.Player.Upgrades
 {
+    /// <summary>
+    /// Upgrade 01 of Rhythm World : Increase damages when shoots are in rhythm
+    /// </summary>
+    /// <remarks>
+    /// Stage 1 : Increase damages when shooting in rhythm <br/>
+    /// Stage 2 : Increase rhythm damages <br/>
+    /// Stage 3 : Increase rhythm damages and add a wave of energy when shooting on rhythm
+    /// </remarks>
     public class RhythmUpgrade01 : Upgrade
     {
         [SerializeField] private AudioManager audioManager;
@@ -61,6 +69,9 @@ namespace Entities.Player.Upgrades
             //TODO : vague d'énergie
         }
         
+        /// <summary>
+        /// Called when the player attack, checks for the rhythm and call event to improve damages if perfect
+        /// </summary>
         private void OnShoot()
         {
             Debug.Log("Rhythm : shoot");
@@ -81,13 +92,25 @@ namespace Entities.Player.Upgrades
         
         private int GetBpm()
         {
+            if (audioManager == null || audioManager.CurrentMusic == null) return -1;
             return audioManager.CurrentMusic.bpm;
         }
         
+        /// <summary>
+        /// Coroutine that changes the _rhythm value over time
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator OnRhythm()
         {
             while (true)
             {
+                //Test on value
+                if (_currentBpm <= 0)
+                {
+                    yield return null;
+                    continue;
+                }
+
                 //TOO SOON
 
                 _rhythm = RhythmDescriptor.TooSoon;

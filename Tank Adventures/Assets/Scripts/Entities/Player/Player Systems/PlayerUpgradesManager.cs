@@ -20,14 +20,6 @@ namespace Entities.Player.Player_Systems
 
         #region Methods
 
-        private void OnEnable()
-        {
-        }
-
-        private void OnDisable()
-        {
-        }
-
         protected override void Awake()
         {
             base.Awake();
@@ -42,24 +34,39 @@ namespace Entities.Player.Player_Systems
             }
         }
 
+        /// <summary>
+        /// Add an upgrade to the player
+        /// </summary>
+        /// <param name="upgrade"></param>
         public void ObtainUpgrade(Upgrade upgrade)
         {
             _upgrades.Add(upgrade);
             upgrade.manager = this;
             upgrade.OnUpgradeObtained();
+            entity.Events.OnUpgradeObtained?.Invoke(upgrade);
         }
 
+        /// <summary>
+        /// Level up an upgrade
+        /// </summary>
+        /// <param name="upgrade"></param>
         public void LevelUpUpgrade(Upgrade upgrade)
         {
             var idx = _upgrades.IndexOf(upgrade);
             if (idx > -1)
             {
                 _upgrades[idx].OnUpgradeLevelUp();
+                entity.Events.OnUpgradeLeveledUp?.Invoke(upgrade);
                 if (upgrade.ThisLevel == upgrade.Data.stages.Count - 1) entity.Events.OnFullUpgradeOnRoad?.Invoke(upgrade.ThisWorldType);
             }
             else Debug.LogWarning("Try to level up upgrade that is not contained in the manager");
         }
 
+        /// <summary>
+        /// Returns the level of the given upgrade
+        /// </summary>
+        /// <param name="upgrade"></param>
+        /// <returns></returns>
         public int GetLevelFromUpgrade(Upgrade upgrade)
         {
             var idx = _upgrades.IndexOf(upgrade);

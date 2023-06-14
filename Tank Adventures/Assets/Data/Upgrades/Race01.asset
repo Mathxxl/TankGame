@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: I'm Speed
     description: "Augmente la vitesse de d\xE9placement"
     technicalDescription: Vitesse +50%
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 11881cc6c563f3e44aaa3d53fec08460, type: 3}
     isStatic: 1
     values:
     - valuesType: 3
@@ -25,8 +25,8 @@ MonoBehaviour:
       percentageValue: 0.5
   - upgradeName: Fast & Furious
     description: "Augmente la vitesse de d\xE9placement"
-    technicalDescription: Vitesse +75%
-    icon: {fileID: 0}
+    technicalDescription: Vitesse +100%
+    icon: {fileID: 21300000, guid: c681ff617e886e84eb0666e11f59987f, type: 3}
     isStatic: 1
     values:
     - valuesType: 3
@@ -34,8 +34,8 @@ MonoBehaviour:
       percentageValue: 1
   - upgradeName: Racing Queen
     description: "Augmente la vitesse de d\xE9placement"
-    technicalDescription: Vitesse +75%
-    icon: {fileID: 0}
+    technicalDescription: Vitesse +200%
+    icon: {fileID: 21300000, guid: 917a99057cc800a4cbfcf42b93107f09, type: 3}
     isStatic: 1
     values:
     - valuesType: 3

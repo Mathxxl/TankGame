@@ -146,10 +146,10 @@ namespace Projectile
             if (other.isTrigger) return;  //hit on trigger zone
 
             //Try to attack target
-            if (weapon.TryToAttackTarget(other.transform))
-            {
-                Explosion();
-            }
+            if (!weapon.TryToAttackTarget(other.transform, this)) return;
+            
+            OnImpact?.Invoke();
+            Explosion();
 
         }
 
@@ -159,6 +159,12 @@ namespace Projectile
         }
 
         #endregion
+
+        #endregion
+
+        #region Events
+
+        public event Action OnImpact;
 
         #endregion
 

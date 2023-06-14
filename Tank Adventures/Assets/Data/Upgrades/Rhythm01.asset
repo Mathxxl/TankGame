@@ -18,7 +18,7 @@ MonoBehaviour:
     description: "Augmente les d\xE9g\xE2ts inflig\xE9s si vous tirez en rythme !"
     technicalDescription: "Les d\xE9g\xE2ts augmentent de 30% si l'attaque est en
       rythme"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 756030bcce03d554eabe466cf8efaca8, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   - upgradeName: En Rythme+
     description: "Les d\xE9g\xE2ts d'En Rythme augmentent"
     technicalDescription: "D\xE9g\xE2ts +50% si en rythme"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: ab07a7742a614b844b69c71ec7dab2a0, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
       aux attaques rythm\xE9es"
     technicalDescription: "D\xE9g\xE2ts \xE0 +100%; la vague inflige 10% de l'attaque
       en d\xE9g\xE2ts"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: d25cdc6a74d96854bae23d090bd98959, type: 3}
     isStatic: 0
     values:
     - valuesType: 0

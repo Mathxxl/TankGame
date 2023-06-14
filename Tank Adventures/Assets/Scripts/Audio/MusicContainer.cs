@@ -3,6 +3,9 @@ using World;
 
 namespace Audio
 {
+    /// <summary>
+    /// Scriptable Container for musics, includes useful data
+    /// </summary>
     [CreateAssetMenu(menuName = "ScriptableObjects/MusicContainer")]
     public class MusicContainer : ScriptableObject
     {

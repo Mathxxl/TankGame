@@ -3,13 +3,14 @@ using System.Collections;
 using Entities.Entity_Systems;
 using Interfaces;
 using UnityEngine;
+using Utilities;
 
 namespace Entities
 {
     /// <summary>
     /// A mortal entity is an entity that is both damageable and destructible.
     /// </summary>
-    public class MortalEntity : Entity, IDamageable, IDestructible
+    public class MortalEntity : Entity, IDamageable, IDestructible, IHealable
     {
         #region Attributes
 
@@ -63,6 +64,18 @@ namespace Entities
             }
         }
 
+        public void Heal(SModif m)
+        {
+            Heal(m.Value, m.Mode);
+        }
+        
+        public void Heal(float value, ValueAppliedMode mode = ValueAppliedMode.Fixed)
+        {
+            if (entityHealth == null) return;
+            
+            entityHealth.AddHealth(value, mode);
+        }
+
         public void Die()
         {
             StartCoroutine(Dying());
@@ -76,15 +89,18 @@ namespace Entities
 
         protected void OnEnable()
         {
+            GameManagerForced.Events.OnLevelStart += OnLevelStart;
             GameManagerForced.Events.OnGoalAchieved += OnLevelEnd;
+            Events.OnHeal += Heal;
         }
 
         protected void OnDisable()
         {
-            if (GameManager != null)
-            {
-                GameManager.Events.OnGoalAchieved -= OnLevelEnd;
-            }
+            if (GameManager == null) return;
+            
+            GameManagerForced.Events.OnLevelStart -= OnLevelStart;
+            GameManager.Events.OnGoalAchieved -= OnLevelEnd;
+            Events.OnHeal -= Heal;
         }
 
         private void OnLevelStart() //ADD WORLD TYPE ?
@@ -109,13 +125,15 @@ namespace Entities
 
         private IEnumerator Dying()
         {
+            //Event
+            Events.OnDeath?.Invoke();
+            
             //Animation
             
             //Wait
             yield return new WaitForSeconds(0);
             
             //Object Destroyed
-            Events.OnDeath?.Invoke();
             DestroyObject();
         }
 

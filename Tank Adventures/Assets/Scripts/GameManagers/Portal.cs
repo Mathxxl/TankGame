@@ -6,6 +6,9 @@ using World;
 
 namespace GameManagers
 {
+    /// <summary>
+    /// Represent a portal, an element that display information about a world and can be selected by the player to go to this world
+    /// </summary>
     public class Portal : MonoBehaviour
     {
         private WorldType _linkedType;
@@ -18,7 +21,7 @@ namespace GameManagers
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private TextMeshProUGUI upgradesText;
         [SerializeField] private Button button;
-
+        
         public void LinkTo(WorldType type, WorldData data)
         {
             _linkedType = type;
@@ -26,7 +29,9 @@ namespace GameManagers
             button.onClick.AddListener(manager.OnCallEnd);
         }
 
-        //Add to the choose button
+        /// <summary>
+        /// Add to the choose button
+        /// </summary>
         public void ChooseThisPortal()
         {
             manager.Events.OnWorldChosen?.Invoke(_linkedType);

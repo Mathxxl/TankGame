@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Entities.Player.Player_Systems
 {
@@ -15,23 +16,31 @@ namespace Entities.Player.Player_Systems
 
         private void OnEnable()
         {
-            entity.GameManagerForced.Events.OnGoalAchieved += () => { PausePlayerInput(); };
-            entity.GameManagerForced.Events.OnLevelStart += () => { PausePlayerInput(false); };
+            entity.GameManagerForced.Events.OnGoalAchieved += PausePlayerInput;
+            entity.GameManagerForced.Events.OnLevelStart += ResumePlayerInput;
+            
+            //DEBUG
+            entity.GameManagerForced.Events.OnFreeZoneReached += ResumePlayerInput;
         }
 
         private void OnDisable()
         {
-            if (entity.GameManager != null)
-            {
-                entity.GameManager.Events.OnGoalAchieved -= () => { PausePlayerInput(); };
-                entity.GameManager.Events.OnLevelStart -= () => { PausePlayerInput(false); };
-            }
+            if (entity.GameManager == null) return;
+            
+            entity.GameManager.Events.OnGoalAchieved -= PausePlayerInput;
+            entity.GameManager.Events.OnLevelStart -= ResumePlayerInput;
         }
 
-        private void PausePlayerInput(bool pause = true)
+        private void PausePlayerInput()
         {
-            Debug.Log($"Player Input enabled = {!pause}");
-            playerInput.enabled = !pause;
+            Debug.Log($"Player Input paused");
+            playerInput.enabled = false;
+        }
+
+        private void ResumePlayerInput()
+        {
+            Debug.Log("Player input resumed");
+            playerInput.enabled = true;
         }
     }
 }

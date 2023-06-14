@@ -17,7 +17,7 @@ MonoBehaviour:
   - upgradeName: Charge
     description: "Percuter des ennemis leur inflige des d\xE9g\xE2ts"
     technicalDescription: "D\xE9g\xE2ts = Vitesse * 10"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a213506a9e524d4469329f9651a78391, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   - upgradeName: "B\xE9lier"
     description: "Percuter des ennemis leur inflige des d\xE9g\xE2ts"
     technicalDescription: "D\xE9g\xE2ts = Vitesse * 15"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 65c5d076c260f454b9d3a2f8aa07194c, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   - upgradeName: Totsugeki
     description: "Percuter des ennemis leur inflige des d\xE9g\xE2ts"
     technicalDescription: "D\xE9g\xE2ts = Vitesse * 25"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: de2688ca16f55df42ae8162d8fa76b4c, type: 3}
     isStatic: 0
     values:
     - valuesType: 0

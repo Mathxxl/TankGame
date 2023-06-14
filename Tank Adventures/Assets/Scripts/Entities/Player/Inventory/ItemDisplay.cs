@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Behaviour for items slots displayed
-/// </summary>
-public class ItemDisplay
+namespace Entities.Player.Inventory
 {
-    public GameObject gameObject;
-    
-    public void UpdateItemDisplay(ItemData data)
+    /// <summary>
+    /// Behaviour for items slots displayed
+    /// </summary>
+    public class ItemDisplay
     {
-        //TODO
+        public GameObject gameObject;
+    
+        public void UpdateItemDisplay(ItemData data)
+        {
+            //
+        }
     }
 }

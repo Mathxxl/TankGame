@@ -6,6 +6,9 @@ using World;
 
 namespace GameManagers
 {
+    /// <summary>
+    /// Manages the available ultimates of the game
+    /// </summary>
     public class GameUltimateManager : Manager
     {
         [SerializeField] private List<Ultimate> availableUltimates;

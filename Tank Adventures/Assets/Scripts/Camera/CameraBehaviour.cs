@@ -1,10 +1,13 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using UnityEngine;
 
 namespace Camera
 {
+    /// <summary>
+    /// Manages the movement of the camera
+    /// </summary>
     public class CameraBehaviour : MonoBehaviour
     {
         [SerializeField] private float mDampTime = 0.1f;                 // Approximate time for the camera to refocus.
@@ -75,18 +78,12 @@ namespace Camera
 
         private void FindAveragePosition ()
         {
-            Vector3 averagePos = new Vector3 ();
-            int numTargets = 0;
+            var averagePos = new Vector3 ();
+            var numTargets = 0;
 
             // Go through all the targets and add their positions together.
-            foreach (var t in mTargets)
+            foreach (var t in mTargets.Where(t => t != null).Where(t => t.gameObject.activeSelf))
             {
-                if (t == null) continue;
-            
-                // If the target isn't active, go on to the next one.
-                if (!t.gameObject.activeSelf)
-                    continue;
-
                 // Add to the average and increment the number of targets in the average.
                 averagePos += t.position;
                 numTargets++;
@@ -107,7 +104,7 @@ namespace Camera
         private void Zoom ()
         {
             // Find the required size based on the desired position and smoothly transition to that size.
-            float requiredSize = FindRequiredSize();
+            var requiredSize = FindRequiredSize();
             _mCamera.orthographicSize = Mathf.SmoothDamp (_mCamera.orthographicSize, requiredSize, ref _mZoomSpeed, mDampTime);
         }
 
@@ -115,24 +112,18 @@ namespace Camera
         private float FindRequiredSize ()
         {
             // Find the position the camera rig is moving towards in its local space.
-            Vector3 desiredLocalPos = transform.InverseTransformPoint(_mDesiredPosition);
+            var desiredLocalPos = transform.InverseTransformPoint(_mDesiredPosition);
 
             // Start the camera's size calculation at zero.
-            float size = 0f;
+            var size = 0f;
 
             // Go through all the targets...
-            foreach (var t in mTargets)
+            foreach (var desiredPosToTarget in from t in mTargets
+                     where t.gameObject.activeSelf
+                     select transform.InverseTransformPoint(t.position)
+                     into targetLocalPos
+                     select targetLocalPos - desiredLocalPos)
             {
-                // ... and if they aren't active continue on to the next target.
-                if (!t.gameObject.activeSelf)
-                    continue;
-
-                // Otherwise, find the position of the target in the camera's local space.
-                Vector3 targetLocalPos = transform.InverseTransformPoint(t.position);
-
-                // Find the position of the target from the desired position of the camera's local space.
-                Vector3 desiredPosToTarget = targetLocalPos - desiredLocalPos;
-
                 // Choose the largest out of the current size and the distance of the tank 'up' or 'down' from the camera.
                 size = Mathf.Max(size, Mathf.Abs(desiredPosToTarget.y));
 
@@ -162,23 +153,24 @@ namespace Camera
             _mCamera.orthographicSize = FindRequiredSize ();
         }
 
+        /// <summary>
+        /// Check in camera targets if there are any mortal entities, to remove them of the following object if needed
+        /// </summary>
         private void AddCheckOnDeath()
         {
             foreach (var target in mTargets)
             {
-                if (target.TryGetComponent(out MortalEntity entity))
-                {
-                    entity.Events.OnDeath += () => OnTargetDeath(target);
-                    _entities.Add(entity);
-                }
+                if (!target.TryGetComponent(out MortalEntity entity)) continue;
+                entity.Events.OnDeath += () => OnTargetDeath(target);
+                _entities.Add(entity);
             }
         }
 
         private void RemoveCheckOnDeath()
         {
-            foreach (var entity in _entities)
+            foreach (var entity in _entities.Where(entity => entity != null))
             {
-                if(entity != null) entity.Events.OnDeath -= () => OnTargetDeath(entity.transform);
+                entity.Events.OnDeath -= () => OnTargetDeath(entity.transform);
             }
         }
 

@@ -2,6 +2,7 @@ using System;
 using Entities.Player.Ultimate;
 using Entities.Player.Upgrades;
 using UnityEngine;
+using Utilities;
 
 namespace Entities
 {
@@ -19,10 +20,11 @@ namespace Entities
         public Action<float> OnTakeDamage; //Damages have been taken
         public Action OnDeath; //The entity is dead
         public Action<float> OnMaxHealthChanged; //Max health has changed
+        public Action<SModif> OnHeal; //TODO : Ajouter OnHealed pour la valeur fixe ajoutée et OnHeal pour dire qu'il faut soigner cette valeur
         public Action<float> OnHealed;
     
         //Collision Events
-        public Action OnCollision; //Collision with something
+        public Action<Transform> OnCollision; //Collision with something
     
         //UI Events
     
@@ -37,6 +39,8 @@ namespace Entities
         public Action<Transform> OnAttack; //A valid attack is performed on a target
         public Action<Transform> OnAttacked; //A target attack us
         public Action OnAttackHit; //Our attack hit something
+        public Action<float> OnAttackChanged;
+        public Action<float> OnAttackSpeedChanged;
         
         //Weapon Events
         public Action<float> OnDamagesChange;
@@ -56,6 +60,7 @@ namespace Entities
         public Action<Upgrade> OnUpgradeObtained;
         public Action<Upgrade> OnUpgradeRemoved;
         public Action<Upgrade> OnUpgradeSelected;
+        public Action<Upgrade> OnUpgradeLeveledUp;
         public Action<World.WorldType> OnFullUpgradeOnRoad;
         
         //Upgrades Specifics
@@ -73,9 +78,13 @@ namespace Entities
         public Action<float> OnImproveDefenseFixed;
         public Action<float> OnImproveSpeed;
         public Action<float> OnImproveSpeedFixed;
+        public Action<float> OnChangeSpeed;
         
         //Ground Events
         public Action OnGroundTouched;
         public Action OnGroundLeft;
+        
+        //Spawn
+        public Action OnPlayerSpawned;
     }
 }

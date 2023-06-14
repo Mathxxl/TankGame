@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GameManagers;
 using UnityEngine;
 using World;
 
 namespace Entities.Player.Player_Systems
 {
+    /// <summary>
+    /// EntitySystem that manages the Ultimate(s) of the player
+    /// </summary>
     public class PlayerUltimateManager : EntitySystem
     {
         [SerializeField] private GameUltimateManager manager; 
@@ -30,6 +32,10 @@ namespace Entities.Player.Player_Systems
             entity.Events.OnFullUpgradeOnRoad -= GetUltimate;
         }
 
+        /// <summary>
+        /// Return the Ultimate associated with given type
+        /// </summary>
+        /// <param name="type"></param>
         private void GetUltimate(WorldType type)
         {
             Debug.Log($"Get Ultimate for type {type}");

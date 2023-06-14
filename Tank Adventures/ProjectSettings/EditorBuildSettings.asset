@@ -11,4 +11,46 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Rhythm01.unity
+    guid: fae395c11d48ab340870885c44854a5d
+  - enabled: 1
+    path: Assets/Scenes/Race01.unity
+    guid: c20bd15210fd6d140a682aee6d75f41f
+  - enabled: 1
+    path: Assets/Scenes/Horror01.unity
+    guid: a066c2cc9b40fb14eb4a2d55be06ecca
+  - enabled: 1
+    path: Assets/Scenes/Future01.unity
+    guid: fd3d41ae213728748a2253874ba7b8ea
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: f5968c7be04a1534c8ddce6665d95457
+  - enabled: 1
+    path: Assets/Scenes/FinalLevel.unity
+    guid: 26d99fe06769b344a9e105791e3b476e
+  - enabled: 1
+    path: Assets/Scenes/Future02.unity
+    guid: 46884e895b4362c418b98b73e59b28f6
+  - enabled: 1
+    path: Assets/Scenes/Future03.unity
+    guid: c1e5be0e6da68424e9a172dd66478cd5
+  - enabled: 1
+    path: Assets/Scenes/Horror02.unity
+    guid: 3f836128ac54163479be19b5c13f5712
+  - enabled: 1
+    path: Assets/Scenes/Horror03.unity
+    guid: fea47c26e38038242956680d00cf6c29
+  - enabled: 1
+    path: Assets/Scenes/Race02.unity
+    guid: 39eb050217e46cb48a88f6edc9115b14
+  - enabled: 1
+    path: Assets/Scenes/Race03.unity
+    guid: a156324a6fe159c4ea2b991f4b8180df
+  - enabled: 1
+    path: Assets/Scenes/Rhythm02.unity
+    guid: c96fdd9bf158d2d4a9530642ab3147dd
+  - enabled: 1
+    path: Assets/Scenes/Rhythm03.unity
+    guid: 89eb33c556459ed49846fd7245542a7f
   m_configObjects: {}

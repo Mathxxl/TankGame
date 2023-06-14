@@ -19,7 +19,7 @@ MonoBehaviour:
       de la vie"
     technicalDescription: "15% des d\xE9g\xE2ts inflig\xE9s sont rendus sous forme
       de vies"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: ae84d321713757747ba43984343eb177, type: 3}
     isStatic: 0
     values:
     - valuesType: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   - upgradeName: Vampire+
     description: "Les d\xE9g\xE2ts et la valeur de soin sont augment\xE9s"
     technicalDescription: "D\xE9g\xE2ts totaux +10%; vol de vie \xE0 20%"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: a10816628b0eddf41b34b99d2ecb3380, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     description: "D\xE9truire un ennemi rend une quantit\xE9 de vie plus importante"
     technicalDescription: "D\xE9g\xE2ts +20%;  Vol de vie \xE0 25%; soin total en
       cas de destruction \xE0 30% de la vie totale du joueur"
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 906f2511c37e06b41b4ff24ce67e6553, type: 3}
     isStatic: 0
     values:
     - valuesType: 0

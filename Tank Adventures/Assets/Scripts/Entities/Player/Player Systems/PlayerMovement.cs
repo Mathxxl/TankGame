@@ -14,10 +14,21 @@ namespace Entities.Player.Player_Systems
     
         private Rigidbody _rb;
         private Vector2 _moveVector = Vector2.zero;
+        private bool _moving;
 
         [SerializeField] private float speed = 15f;
         [SerializeField] private float turnSpeed = 180f;
-    
+
+        public float Speed
+        {
+            get => speed;
+            set
+            {
+                speed = value;
+                entity.Events.OnChangeSpeed?.Invoke(speed);
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -26,21 +37,40 @@ namespace Entities.Player.Player_Systems
         {
             base.Awake();
             _rb = entity.gameObject.GetComponent<Rigidbody>();
+            speed = entity.id.speed;
         }
 
         private void FixedUpdate()
         {
+            if(_moveVector == Vector2.zero && _moving){
+                entity.Events.OnStopMoving?.Invoke();
+                _moving = false;
+                return;
+            }
+            
+            if (_moveVector != Vector2.zero && !_moving)
+            {
+                entity.Events.OnStartMoving?.Invoke();
+                _moving = true;
+            }
+
             Move();
             Turn();
         }
 
         private void OnEnable()
         {
+            entity.Events.OnImproveSpeed += ImproveSpeed;
+            entity.Events.OnImproveSpeedFixed += ImproveSpeedFixed;
+            
             _rb.isKinematic = false;
         }
     
         private void OnDisable()
         {
+            entity.Events.OnImproveSpeed -= ImproveSpeed;
+            entity.Events.OnImproveSpeedFixed -= ImproveSpeedFixed;
+            
             _rb.isKinematic = true;
         }
 
@@ -61,6 +91,16 @@ namespace Entities.Player.Player_Systems
             var movementDirection = new Vector3(_moveVector.x, 0f, _moveVector.y);
             var toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             _rb.rotation = Quaternion.RotateTowards(_rb.rotation, toRotation, turnSpeed * Time.deltaTime);
+        }
+
+        private void ImproveSpeed(float value)
+        {
+            Speed *= (1.0f + value);
+        }
+
+        private void ImproveSpeedFixed(float value)
+        {
+            Speed += value;
         }
 
         #endregion

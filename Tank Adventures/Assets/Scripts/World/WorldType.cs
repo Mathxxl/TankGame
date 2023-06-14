@@ -10,5 +10,6 @@ namespace World
         Horror,
         Race,
         Future,
+        Final
     }
 }

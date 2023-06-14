@@ -75,6 +75,11 @@ namespace Entities.Entity_Systems.Weapons
                 cooldown = data.cooldown;
                 range = data.range;
             }
+            else
+            {
+                damages = entity.id.attack;
+                cooldown = entity.id.attackSpeed;
+            }
             
             if(attackableTags.Length == 0) Debug.LogWarning($"No tags setup for attack ({gameObject.name})");
         }
@@ -82,31 +87,30 @@ namespace Entities.Entity_Systems.Weapons
         #endregion
 
         //Called when an attack is to be performed, check if it can be done regarding weapon status
-        public virtual void ToAttack()
+        public void ToAttack()
         {
-            if (!IsCoolingDown)
-            {
-                entity.Events.OnPerformingAttack?.Invoke();
-                Attack();
-                StartCoroutine(CoolingDown());
-            }
+            if (IsCoolingDown) return;
+            
+            entity.Events.OnPerformingAttack?.Invoke();
+            Attack();
+            StartCoroutine(CoolingDown());
         }
         
         //Perform the actual attack
-        protected virtual void Attack(){}
+        protected abstract void Attack();
         
         //Attack touch a target
-        public bool TryToAttackTarget(Transform target)
+        public bool TryToAttackTarget(Transform target, Subweapon subweapon = null)
         {
             //Cases not considered
             if (target.gameObject.CompareTag(SelfTag)) return false;  //hit on self
 
-            AttackTarget(target);
+            AttackTarget(target, subweapon);
             return true;
         }
         
         //Consequences of attacking a target
-        protected virtual void AttackTarget(Transform target){}
+        protected abstract void AttackTarget(Transform target, Subweapon wubweapon = null);
         
         //Manages the attack cooldown
         private IEnumerator CoolingDown()

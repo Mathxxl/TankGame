@@ -53,6 +53,15 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StatsMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4a1f76c-3e57-4ef0-95b5-c83c4b3f76bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +218,28 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""action"": ""Ultimate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cff111e4-454c-4a88-90bf-47f9c270b517"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse & Keyboard"",
+                    ""action"": ""StatsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86d7ffeb-6cfb-4c2c-9b1a-9f29be188309"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StatsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -253,6 +284,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Ultimate = m_Player.FindAction("Ultimate", throwIfNotFound: true);
+        m_Player_StatsMenu = m_Player.FindAction("StatsMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,6 +347,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Ultimate;
+    private readonly InputAction m_Player_StatsMenu;
     public struct PlayerActions
     {
         private @CustomInput m_Wrapper;
@@ -322,6 +355,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Ultimate => m_Wrapper.m_Player_Ultimate;
+        public InputAction @StatsMenu => m_Wrapper.m_Player_StatsMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -340,6 +374,9 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @Ultimate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimate;
                 @Ultimate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimate;
                 @Ultimate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUltimate;
+                @StatsMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
+                @StatsMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
+                @StatsMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -353,6 +390,9 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @Ultimate.started += instance.OnUltimate;
                 @Ultimate.performed += instance.OnUltimate;
                 @Ultimate.canceled += instance.OnUltimate;
+                @StatsMenu.started += instance.OnStatsMenu;
+                @StatsMenu.performed += instance.OnStatsMenu;
+                @StatsMenu.canceled += instance.OnStatsMenu;
             }
         }
     }
@@ -380,5 +420,6 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnUltimate(InputAction.CallbackContext context);
+        void OnStatsMenu(InputAction.CallbackContext context);
     }
 }

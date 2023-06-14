@@ -23,6 +23,9 @@ namespace GameManagers
         [SerializeField] private RandomPondered typesPonderation;
         
         private List<WorldType> _types;
+        private int _availableTypesCount;
+        private bool _goHome;
+        private bool _goFinal;
         
         public ManagerEvents Events => gameManager.Events;
 
@@ -37,17 +40,29 @@ namespace GameManagers
             {
                 typesPonderation = RandomPondered.CreateComponent(gameObject, 10, _types.Count);
             }
-            
+            //Remove Special Types
+            RemoveTypeFromSelection(WorldType.Home);
+            RemoveTypeFromSelection(WorldType.Final);
         }
 
         private void OnEnable()
         {
+            if (gameManager == null) return;
+            
             gameManager.Events.OnUpgradeChosen += _ => OnCallStart();
+            gameManager.Events.OnAllUpgradesGottenForWorld += RemoveTypeFromSelection;
+            gameManager.Events.OnLevelBeforeHome += () => { _goHome = true; };
+            gameManager.Events.OnBeforeFinalWorld += () => { _goFinal = true; };
         }
 
         private void OnDisable()
         {
+            if (gameManager == null) return;
+            
             gameManager.Events.OnUpgradeChosen -= _ => OnCallStart();
+            gameManager.Events.OnAllUpgradesGottenForWorld -= RemoveTypeFromSelection;
+            gameManager.Events.OnLevelBeforeHome -= () => { _goHome = true; };
+            gameManager.Events.OnBeforeFinalWorld -= () => { _goFinal = true; };
         }
 
         private void SetTypeList()
@@ -57,34 +72,62 @@ namespace GameManagers
             {
                 _types.Add(world.Type);
             }
+
+            _availableTypesCount = _types.Count;
         }
 
         private void OnCallStart()
         {
-            GeneratePortals();
+            if (_goFinal)
+            {
+                GeneratePortal(WorldType.Final);
+                _goFinal = false;
+            }
+            else if (_goHome)
+            {
+                GeneratePortal(WorldType.Home);
+                _goHome = false;
+            }
+            else
+            {
+                GeneratePortals();
+            }
         }
         
-        public void GeneratePortals()
+        /// <summary>
+        /// Instantiates the portals and link them to a random available world
+        /// </summary>
+        private void GeneratePortals()
         {
             var memList = new List<int>();
             
             for (var i = 0; i < numberOfChoices; i++)
             {
-                var portalObject = Instantiate(portalPrefab, transform);
-                
-                //Add to go world to the portal
+                //Get random type
 
                 var randomValue = typesPonderation.GetRandomWithExclusion(memList);
                 typesPonderation.AddWeight(randomValue);
-                var portal = portalObject.GetComponent<Portal>();
                 var type = _types[randomValue];
                 Debug.Log($"Portal type = {type}");
+
+                //Generate portal
                 
-                portal.manager = this;
-                portal.LinkTo(type, worldManager.GetDataFromWorld(type));
-                
-                //TODO : Increase ponderation for chosen world
+                GeneratePortal(type);
             }
+        }
+
+        /// <summary>
+        /// Generates a portal of given type
+        /// </summary>
+        /// <param name="type"></param>
+        private void GeneratePortal(WorldType type)
+        {
+            var portalObject = Instantiate(portalPrefab, transform);
+                
+            //Add to go world to the portal
+            var portal = portalObject.GetComponent<Portal>();
+            portal.manager = this;
+            portal.LinkTo(type, worldManager.GetDataFromWorld(type));
         }
 
         public void OnCallEnd()
@@ -98,6 +141,16 @@ namespace GameManagers
             {
                 Destroy(transform.GetChild(i).gameObject);
             }
+        }
+
+        private void RemoveTypeFromSelection(WorldType type)
+        {
+            var idx = _types.IndexOf(type);
+            if (idx < 0) return;
+            
+            typesPonderation.AddAt(idx, 0);
+            _availableTypesCount--;
+            if (numberOfChoices > _availableTypesCount) numberOfChoices = _availableTypesCount;
         }
 
         #endregion

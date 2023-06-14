@@ -6,13 +6,15 @@ using World;
 
 namespace GameManagers
 {
-    //Manages worlds
+    /// <summary>
+    /// Manager for the Worlds
+    /// </summary>
     public class GameWorldManager : Manager
     {
         [SerializeField] private List<World.World> gameWorlds;
         [SerializeField] private List<WorldData> worldsData;
         [Tooltip("Indicates after how many worlds the level goes up")][SerializeField] private int floor = 3;
-        [Tooltip("Indicates the maximum number of levels in a game")] [SerializeField] private int maxLevels = 16;
+        [Tooltip("Indicates the maximum number of levels in a game")] [SerializeField] private int maxLevels = 16; //TODO : Call end game when reaching max level
         
         [Header("Debug")]
         [SerializeField] private World.World currentWorld;
@@ -22,8 +24,6 @@ namespace GameManagers
         public World.World CurrentWorld => currentWorld;
         public int Idx => _sceneIdx;
         public IEnumerable<World.World> Worlds => gameWorlds;
-
-        //TODO : génération pondérée de mondes possibles dans les portails, pondération à 0 si plus d'updates disponibles
 
         private void Awake()
         {
@@ -47,17 +47,69 @@ namespace GameManagers
             currentWorld.OnWorldUpdate();
         }
 
+        /// <summary>
+        /// Go to a random scene of given WorldType
+        /// </summary>
+        /// <param name="type"></param>
         public void ChangeScene(WorldType type)
         {
+            //Change world if needed
             if (type != currentWorld.Type)
             {
                 ChangeWorld(type);
             }
+
+            //Check index to launch final level if needed
+            IdxProgress();
             
+            //Load next scene based on level
             //TODO : SceneManager for asynchronous loading and loading screen
             var nextLevel = currentWorld.GetSceneOfLevel(_sceneIdx / floor);
-            //SceneManager.LoadScene(nextLevel);
+            var buildIndex = SceneUtility.GetBuildIndexByScenePath(nextLevel);
+            
+            if (buildIndex < 0) //Scene not found : free the player as in a free zone
+            {
+                Debug.LogWarning($"Scene {nextLevel} doesn't exists or has not been added to the build");
+                gameManager.Events.OnFreeZoneReached?.Invoke();
+            }
+            else
+            {
+                SceneManager.LoadScene(nextLevel);
+            }
             Debug.Log($"Next Level would be {nextLevel ?? ">null<"}");
+        }
+
+        /// <summary>
+        /// Increase the idx that keep track of how many levels were visited and call events related when needed
+        /// </summary>
+        private void IdxProgress()
+        {
+            _sceneIdx++;
+            Debug.Log($"Reaching level {_sceneIdx}");
+            
+            var idDiff = maxLevels - _sceneIdx;
+            if (idDiff < 3)
+            {
+                switch (idDiff)
+                {
+                    case 2:
+                        gameManager.Events.OnBeforeFinalWorld?.Invoke();
+                        break;
+                    case 1:
+                        gameManager.Events.OnFinalWorldReached?.Invoke();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                if (_sceneIdx % floor == floor - 1)
+                {
+                    gameManager.Events.OnLevelBeforeHome?.Invoke();
+                }
+            }
+
         }
         
         private void ChangeWorld(WorldType type)
@@ -74,11 +126,21 @@ namespace GameManagers
             }
         }
 
+        /// <summary>
+        /// Returns WorldData associated with given type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public WorldData GetDataFromWorld(WorldType type)
         {
             return worldsData.FirstOrDefault(data => data.type == type);
         }
 
+        /// <summary>
+        /// Returns the World associated with given type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         private World.World GetWorldByType(WorldType type)
         {
             return gameWorlds.FirstOrDefault(world => world.Type == type);

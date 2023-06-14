@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Entities.Player.Upgrades
 {
+    /// <summary>
+    /// Manages Upgrade Cards that represent an upgrade in the UI
+    /// </summary>
     public class UpgradeCard : MonoBehaviour
     {
         [SerializeField] private Button button;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Entities.Player.Inventory;
+using UnityEngine;
 
 /// <summary>
 /// Manages the display of the inventory

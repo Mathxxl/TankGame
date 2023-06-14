@@ -30,21 +30,35 @@ namespace World
             Debug.Log($"{_scenesByLevel.Count} levels found for world {name}");
         }
 
+        /// <summary>
+        /// Called when entering any world
+        /// </summary>
         public void OnWorldEnter()
         {
             OnEnter();
         }
 
+        /// <summary>
+        /// Called each frame for any world
+        /// </summary>
         public void OnWorldUpdate()
         {
             OnUpdate();
         }
 
+        /// <summary>
+        /// Called on leaving any world
+        /// </summary>
         public void OnWorldExit()
         {
             OnExit();
         }
 
+        /// <summary>
+        /// Returns the name of a scene associated to this world with given level
+        /// </summary>
+        /// <param name="level"></param>
+        /// <returns></returns>
         public string GetSceneOfLevel(int level)
         {
             if (level >= _scenesByLevel.Count) return null;
@@ -53,11 +67,14 @@ namespace World
             var rand = Random.Range(0, availableLevels.Count);
             return availableLevels[rand].sceneName;
         }
-        
-        protected virtual void OnEnter(){}
-        protected virtual void OnUpdate(){}
-        protected virtual void OnExit(){}
 
+        protected abstract void OnEnter();
+        protected abstract void OnUpdate();
+        protected abstract void OnExit();
+
+        /// <summary>
+        /// Set the list of list of levels of this world ordered by level
+        /// </summary>
         private void SetLevels()
         {
             _scenesByLevel = new List<List<WorldLevel>>();

@@ -18,7 +18,7 @@ namespace Entities.Entity_Systems.UI
         [SerializeField] private float lifeChangeDuration = 0.2f;
         private float _refWidthSlider;
         private RectTransform _sliderRectTransform;
-        private bool _isUpdating;
+        //private bool _isUpdating;
         private Coroutine _currentCoroutine;
 
         #endregion
@@ -76,7 +76,7 @@ namespace Entities.Entity_Systems.UI
             var diff = value - slider.value;
             var step = diff / lifeChangeDuration; //step with duration of change
             var goOut = false;
-            _isUpdating = true;
+            //_isUpdating = true;
             var ename = controller.Entity.name; //debug
 
             //Debug.Log($"/!\\ STEP == {step * Time.deltaTime} for value = {value}, slider.value = {slider.value}");
@@ -111,7 +111,7 @@ namespace Entities.Entity_Systems.UI
             
             slider.value = value;
             //Debug.Log($"[{ename}] ****** slider value = {slider.value}, value = {value} ************");
-            _isUpdating = false;
+            //_isUpdating = false;
         }
 
         #endregion

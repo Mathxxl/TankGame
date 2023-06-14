@@ -16,7 +16,6 @@ namespace GameManagers
         public Action<WorldType> OnWorldChosen;
         public Action OnBeforeFinalWorld;
         public Action OnFinalWorldReached;
-        public Action OnFinalWorldEnd;
 
         //Free Zone
         public Action OnFreeZoneReached; //=> TODO separates events from setup (whichever scene), setup level (enemies etc.) and setup freezone (shops etc.)
@@ -33,6 +32,7 @@ namespace GameManagers
         public Action OnGoalPlaceReached;
         
         //Gameflow
+        public Action OnFirstGameStart;
         public Action OnLevelStart;
         public Action OnGoalAchieved;
         public Action OnFinalLevelAchieved;

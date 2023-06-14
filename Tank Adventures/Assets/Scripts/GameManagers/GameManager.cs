@@ -25,6 +25,11 @@ namespace GameManagers
             SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
         }
 
+        private void Start()
+        {
+            Events.OnFirstGameStart?.Invoke();
+        }
+
         private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             Debug.Log($"Scene loaded : {scene.name} in mode {loadSceneMode}");

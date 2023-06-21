@@ -51,14 +51,14 @@ namespace UI.UpgradesIndicator
         {
             if (_data == null || icon == null) return;
 
-            icon.sprite = _data.stages[_level -1].icon;
+            icon.sprite = _data.stages[_level].icon;
         }
 
         private void SetDescription()
         {
             if (_data == null || textDescription == null) return;
 
-            textDescription.text = _data.stages[_level -1].description;
+            textDescription.text = _data.stages[_level].description;
         }
     }
 }

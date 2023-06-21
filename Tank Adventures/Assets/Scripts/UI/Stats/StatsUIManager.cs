@@ -23,6 +23,10 @@ namespace UI.Stats
             
             SetTextValues();
             SetInitialValues();
+        }
+
+        private void Start()
+        {
             statsHolder.SetActive(_isActive);
         }
 

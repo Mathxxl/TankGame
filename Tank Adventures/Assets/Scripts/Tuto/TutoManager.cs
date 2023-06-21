@@ -12,14 +12,20 @@ namespace Tuto
         public string nameID;
         [TextArea] public string description;
         public Vector2 position;
-        [HideInInspector] public bool hasBeenSeen;
     }
     
     public class TutoManager : Manager
     {
         [SerializeField] private TutoCard card;
         [SerializeField] private List<TutoData> data;
+        private Dictionary<TutoData, bool> _dataChecked;
         private TutoData _currentData;
+
+        private void Awake()
+        {
+            card.gameObject.SetActive(false);
+            CreateDic();
+        }
 
         private void OnEnable()
         {
@@ -34,11 +40,9 @@ namespace Tuto
         private void Subscribe(string tutoName)
         {
             if(!GetDataByName(tutoName)) return;
-            if (_currentData.hasBeenSeen) return;
-            
+
             card.Set(_currentData.description);
             card.gameObject.transform.localPosition = _currentData.position;
-            _currentData.hasBeenSeen = true;
 
             card.gameObject.SetActive(true);
             StartCoroutine(card.Lifetime());
@@ -46,12 +50,24 @@ namespace Tuto
 
         private bool GetDataByName(string tutoName)
         {
-            foreach (var d in data.Where(d => d.nameID == tutoName))
+            foreach (var pair in _dataChecked.Where(pair => pair.Key.nameID == tutoName && !pair.Value))
             {
-                _currentData = d;
+                _currentData = pair.Key;
+                _dataChecked[_currentData] = true;
                 return true;
             }
+
             return false;
+        }
+
+        private void CreateDic()
+        {
+            _dataChecked = new Dictionary<TutoData, bool>();
+
+            foreach (var d in data)
+            {
+                _dataChecked.Add(d, false);
+            }
         }
     }
 }

@@ -16,10 +16,6 @@ namespace UI.UpgradesIndicator
         {
             base.Awake();
             _indicators = new Dictionary<Upgrade, GameObject>();
-        }
-        
-        private void OnEnable()
-        {
             entity.Events.OnUpgradeObtained += UpgradeObtained;
             entity.Events.OnUpgradeLeveledUp += UpgradeLeveledUp;
         }
@@ -33,6 +29,8 @@ namespace UI.UpgradesIndicator
         private void UpgradeObtained(Upgrade upgrade)
         {
             Debug.Log("UpgradeObtained call");
+
+            if (_indicators.ContainsKey(upgrade)) return;
             
             var up = Instantiate(upgradeIndicatorPrefab, layout.transform);
 

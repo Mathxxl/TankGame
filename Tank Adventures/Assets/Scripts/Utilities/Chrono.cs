@@ -25,7 +25,13 @@ namespace Utilities
 
         public void OnEnable()
         {
+            OnChronoEnabled?.Invoke();
             ResetChrono();
+        }
+
+        public void OnDisable()
+        {
+            OnChronoDisabled?.Invoke();
         }
 
         public void ResumeChrono()
@@ -49,6 +55,12 @@ namespace Utilities
             _dir = (goalTime - startTime) > 0 ? 1 : -1;
         }
 
+        public void SetValues(float start, float goal)
+        {
+            startTime = start;
+            goalTime = goal;
+        }
+
         private IEnumerator Timing()
         {
             while (Mathf.Abs(CurrentTime - goalTime) > 0.01f)
@@ -62,5 +74,7 @@ namespace Utilities
 
         public event Action<float> OnUpdateCurrentTime;
         public event Action OnGoalTimeReached;
+        public event Action OnChronoEnabled;
+        public event Action OnChronoDisabled;
     }
 }

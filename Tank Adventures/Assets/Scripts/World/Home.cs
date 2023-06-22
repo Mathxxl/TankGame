@@ -13,8 +13,11 @@
         }
 
         protected override void OnUpdate()
+        { }
+
+        protected override void LevelReached()
         {
-            
+            manager.GManager.Events.OnZoneStart?.Invoke();
         }
     }
 }

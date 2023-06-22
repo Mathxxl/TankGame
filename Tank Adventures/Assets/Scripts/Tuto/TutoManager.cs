@@ -29,12 +29,12 @@ namespace Tuto
 
         private void OnEnable()
         {
-            gameManager.Events.OnLevelStart += () => Subscribe("MovementTuto");
+            gameManager.Events.OnZoneStart += () => Subscribe("MovementTuto");
         }
 
         private void OnDisable()
         {
-            gameManager.Events.OnLevelStart -= () => Subscribe("MovementTuto");
+            gameManager.Events.OnZoneStart -= () => Subscribe("MovementTuto");
         }
 
         private void Subscribe(string tutoName)

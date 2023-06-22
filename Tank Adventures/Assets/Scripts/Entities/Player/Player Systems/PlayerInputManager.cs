@@ -17,7 +17,7 @@ namespace Entities.Player.Player_Systems
         private void OnEnable()
         {
             entity.GameManagerForced.Events.OnGoalAchieved += PausePlayerInput;
-            entity.GameManagerForced.Events.OnLevelStart += ResumePlayerInput;
+            entity.GameManagerForced.Events.OnZoneStart += ResumePlayerInput;
             
             //DEBUG
             entity.GameManagerForced.Events.OnFreeZoneReached += ResumePlayerInput;
@@ -28,7 +28,7 @@ namespace Entities.Player.Player_Systems
             if (entity.GameManager == null) return;
             
             entity.GameManager.Events.OnGoalAchieved -= PausePlayerInput;
-            entity.GameManager.Events.OnLevelStart -= ResumePlayerInput;
+            entity.GameManager.Events.OnZoneStart -= ResumePlayerInput;
         }
 
         private void PausePlayerInput()

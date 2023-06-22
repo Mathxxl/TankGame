@@ -33,9 +33,16 @@ namespace GameManagers
         
         //Gameflow
         public Action OnFirstGameStart;
-        public Action OnLevelStart;
+        public Action OnLevelReached; //When a level is reached (for preprocessing)
+        public Action OnZoneStart; //When a level starts (any level, for movement and so on)
+        public Action OnLevelStart; //When a level with an objective starts (for enemy management & so on) 
+        
         public Action OnGoalAchieved;
         public Action OnFinalLevelAchieved;
+        public Action OnGoalFailed;
+        
+        //Player
+        public Action OnPlayerKilled;
         
         //Home
         public Action OnLevelBeforeHome;

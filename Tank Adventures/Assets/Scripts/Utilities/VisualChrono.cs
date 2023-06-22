@@ -16,6 +16,13 @@ namespace Utilities
         private int _min;
         private int _seconds;
         private int _centi;
+
+        private void Awake()
+        {
+            chrono.OnChronoEnabled += ChronoEnabled;
+            chrono.OnChronoDisabled += ChronoDisabled;
+            gameObject.SetActive(false);
+        }
         
         private void OnEnable()
         {
@@ -27,6 +34,12 @@ namespace Utilities
             chrono.OnUpdateCurrentTime -= ChronoUpdated;
         }
 
+        private void OnDestroy()
+        {
+            chrono.OnChronoEnabled -= ChronoEnabled;
+            chrono.OnChronoDisabled -= ChronoDisabled;
+        }
+
         private void ChronoUpdated(float value)
         {
             Convert(value);
@@ -36,7 +49,7 @@ namespace Utilities
         private void Convert(float totalSeconds)
         {
             _min = (int) (totalSeconds / 60);
-            totalSeconds -= _min;
+            totalSeconds -= _min*60;
 
             _seconds = (int) totalSeconds;
             totalSeconds -= _seconds;
@@ -61,6 +74,16 @@ namespace Utilities
                 return number.ToString(CultureInfo.InvariantCulture);
             }
             
+        }
+
+        private void ChronoEnabled()
+        {
+            gameObject.SetActive(true);
+        }
+
+        private void ChronoDisabled()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

@@ -1,20 +1,36 @@
-﻿namespace World
+﻿using UnityEngine;
+
+namespace World
 {
     public class HorrorWorld : World
     {
+        [SerializeField] private GameObject lightObjectPrefab;
+        private GameObject _lightObject;
+        
         protected override void OnEnter()
         {
-            
+            SetLight();
         }
 
         protected override void OnExit()
         {
-            
+            UnSetLight();
         }
 
         protected override void OnUpdate()
         {
             
+        }
+
+        private void SetLight()
+        {
+            _lightObject = Instantiate(lightObjectPrefab, manager.GManager.Player.transform);
+            _lightObject.transform.rotation = lightObjectPrefab.transform.rotation;
+        }
+
+        private void UnSetLight()
+        {
+            Destroy(_lightObject);
         }
     }
 }

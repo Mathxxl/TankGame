@@ -15,14 +15,14 @@ namespace Entities.Player.Player_Systems
 
         private void OnEnable()
         {
-            entity.GameManagerForced.Events.OnLevelStart += OnLevelStart;
+            entity.GameManagerForced.Events.OnLevelReached += OnLevelStart;
         }
 
         private void OnDisable()
         {
             if (entity.GameManager == null) return;
             
-            entity.GameManagerForced.Events.OnLevelStart -= OnLevelStart;
+            entity.GameManagerForced.Events.OnLevelReached -= OnLevelStart;
         }
 
         private void OnLevelStart()

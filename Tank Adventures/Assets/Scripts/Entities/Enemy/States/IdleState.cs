@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Entities.Enemy.States
 {
     /// <summary>
@@ -7,12 +9,12 @@ namespace Entities.Enemy.States
     {
         protected override void OnEnter()
         {
-            NextState();
+            Controller.ControllerEntity.GameManager.Events.OnLevelStart += NextState;
         }
 
         protected override void OnExit()
         {
-        
+            if(Controller != null) Controller.ControllerEntity.GameManager.Events.OnLevelStart -= NextState;
         }
 
         protected override void UpdateState()

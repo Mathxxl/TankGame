@@ -27,13 +27,16 @@ namespace GameManagers
 
         private void Start()
         {
-            Events.OnFirstGameStart?.Invoke();
+            //Events.OnFirstGameStart?.Invoke();
+            Events.OnLevelReached?.Invoke();
+            Events.OnZoneStart?.Invoke();
+            Events.OnLevelStart?.Invoke();
         }
 
         private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
             Debug.Log($"Scene loaded : {scene.name} in mode {loadSceneMode}");
-            Events.OnLevelStart?.Invoke();
+            Events.OnLevelReached?.Invoke();
         }
 
         //TESTING

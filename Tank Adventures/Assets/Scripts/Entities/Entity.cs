@@ -36,7 +36,13 @@ namespace Entities
 
         private void GetGameManager()
         {
-            gameManager = FindObjectOfType(typeof(GameManager)).GetComponent<GameManager>(); 
+            var obj = FindObjectOfType(typeof(GameManager));
+            if (obj == null)
+            {
+                Debug.LogWarning("No GameManager found on scene");
+                return;
+            }
+            gameManager = obj.GetComponent<GameManager>(); 
         }
     }
 }

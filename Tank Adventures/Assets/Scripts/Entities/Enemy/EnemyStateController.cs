@@ -26,12 +26,7 @@ namespace Entities.Enemy
 
         protected void Start()
         {
-            ChangeState(idleState);
-        }
-
-        private void OnEnable()
-        {
-            TransitionSetup();
+            ChangeState(idleState); //not in awake to avoid problems
         }
 
         private void OnDisable()
@@ -39,6 +34,7 @@ namespace Entities.Enemy
             idleState.OnNextState -= SetPatrol;
             patrolState.TargetFound -= SetChase;
             chaseState.OnPlayerLost -= SetPatrol;
+            entity.GameManager.Events.OnGoalAchieved -= SetIdle;
         }
 
         #endregion
@@ -50,6 +46,7 @@ namespace Entities.Enemy
             idleState.OnNextState += SetPatrol; //Patrol after idle
             patrolState.TargetFound += SetChase; //Chase after a target is found
             chaseState.OnPlayerLost += SetPatrol; //Patrol after target is lost
+            entity.GameManager.Events.OnGoalAchieved += SetIdle;
         }
         #endregion
 
@@ -68,6 +65,12 @@ namespace Entities.Enemy
         
             chaseState.SetTarget(target);
             ChangeState(chaseState);
+        }
+
+        //Change to idle state
+        private void SetIdle()
+        {
+            ChangeState(idleState);
         }
         
 

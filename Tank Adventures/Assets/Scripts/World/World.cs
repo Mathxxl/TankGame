@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using GameManagers;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace World
         {
             SetLevels();
             Debug.Log($"{_scenesByLevel.Count} levels found for world {name}");
+            OnAwake();
         }
 
         /// <summary>
@@ -35,6 +37,7 @@ namespace World
         /// </summary>
         public void OnWorldEnter()
         {
+            manager.GManager.Events.OnLevelReached += LevelReached;
             OnEnter();
         }
 
@@ -52,6 +55,7 @@ namespace World
         public void OnWorldExit()
         {
             OnExit();
+            manager.GManager.Events.OnLevelReached -= LevelReached;
         }
 
         /// <summary>
@@ -71,6 +75,20 @@ namespace World
         protected abstract void OnEnter();
         protected abstract void OnUpdate();
         protected abstract void OnExit();
+        
+        protected virtual void OnAwake(){}
+
+        protected virtual void LevelReached()
+        {
+            StartCoroutine(EnsureStart());
+        }
+
+        private IEnumerator EnsureStart()
+        {
+            yield return null;
+            manager.GManager.Events.OnZoneStart?.Invoke();
+            manager.GManager.Events.OnLevelStart?.Invoke();
+        }
 
         /// <summary>
         /// Set the list of list of levels of this world ordered by level

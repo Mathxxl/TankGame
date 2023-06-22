@@ -19,14 +19,14 @@ namespace GameManagers
         private void OnEnable()
         {
             gameManager.Events.OnFinalWorldReached += () => { _isBoss = true; };
-            gameManager.Events.OnLevelStart += FindEnemies;
+            gameManager.Events.OnLevelReached += FindEnemies;
             
         }
 
         private void OnDisable()
         {
             gameManager.Events.OnFinalWorldReached -= () => { _isBoss = true; };
-            gameManager.Events.OnLevelStart -= FindEnemies;
+            gameManager.Events.OnLevelReached -= FindEnemies;
         }
 
         /// <summary>

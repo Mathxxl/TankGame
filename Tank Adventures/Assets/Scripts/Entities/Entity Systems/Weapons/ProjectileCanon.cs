@@ -40,7 +40,7 @@ namespace Entities.Entity_Systems.Weapons
             entity.Events.OnImproveDamageForOneHitFixed += ImproveDamagesForOneHitFixed;
             entity.Events.OnImproveDamageForOneHit += ImproveDamagesForOneHit;
 
-            entity.GameManagerForced.Events.OnLevelStart += OnLevelStart;
+            entity.GameManagerForced.Events.OnLevelReached += OnLevelStart;
         }
 
         protected void OnDisable()
@@ -52,7 +52,7 @@ namespace Entities.Entity_Systems.Weapons
 
             if (entity.GameManager == null) return;
             
-            entity.GameManager.Events.OnLevelStart -= OnLevelStart;
+            entity.GameManager.Events.OnLevelReached -= OnLevelStart;
 
         }
 

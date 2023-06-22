@@ -24,6 +24,7 @@ namespace GameManagers
         public World.World CurrentWorld => currentWorld;
         public int Idx => _sceneIdx;
         public IEnumerable<World.World> Worlds => gameWorlds;
+        public GameManager GManager => gameManager;
 
         private void Awake()
         {

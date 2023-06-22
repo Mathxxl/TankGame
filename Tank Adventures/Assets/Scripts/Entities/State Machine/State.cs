@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Entities.State_Machine
 {
@@ -48,6 +49,7 @@ namespace Entities.State_Machine
         
         protected void NextState()
         {
+            Debug.Log("NextState Event");
             OnNextState?.Invoke();
         }
 

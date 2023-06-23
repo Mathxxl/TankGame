@@ -9,6 +9,10 @@ using Utilities;
 
 namespace World
 {
+    /// <summary>
+    /// Describes the specific behaviours of the race world<br/>
+    /// The player has to reach an end goal before a timer runs out
+    /// </summary>
     public class RaceWorld : World
     {
         [Serializable]

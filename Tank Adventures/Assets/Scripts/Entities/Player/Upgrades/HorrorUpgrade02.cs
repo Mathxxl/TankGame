@@ -50,6 +50,9 @@ namespace Entities.Player.Upgrades
             if(manager!= null && manager.ThisEntity != null) manager.ThisEntity.Events.OnAttack -= AttackTarget;
         }
 
+        /// <summary>
+        /// Called on attacking something, create a dark zone with correct parameters
+        /// </summary>
         private void AttackTarget(Transform target)
         {
             var dzobj = Instantiate(darkZonePrefab, target.transform.position, darkZonePrefab.transform.rotation);
@@ -62,6 +65,9 @@ namespace Entities.Player.Upgrades
             dz.StartDarkZone();
         }
 
+        /// <summary>
+        /// Setup the current dark zone parameters using upgrade data
+        /// </summary>
         private void GetCurrentParameters()
         {
             var sizeHolder = GetValues(UpgradeData.UpgradeValuesType.Other);

@@ -2,6 +2,10 @@
 
 namespace World
 {
+    /// <summary>
+    /// Describes the specific behaviours of the Horror World<br/>
+    /// In this world there is no light but a low source that follows the player
+    /// </summary>
     public class HorrorWorld : World
     {
         [SerializeField] private GameObject lightObjectPrefab;

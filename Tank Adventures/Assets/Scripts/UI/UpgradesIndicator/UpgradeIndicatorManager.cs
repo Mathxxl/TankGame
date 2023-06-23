@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace UI.UpgradesIndicator
 {
+    /// <summary>
+    /// Manager for Upgrade Indicators
+    /// </summary>
     public class UpgradeIndicatorManager : EntitySystem
     {
         [SerializeField] private GameObject upgradeIndicatorPrefab;

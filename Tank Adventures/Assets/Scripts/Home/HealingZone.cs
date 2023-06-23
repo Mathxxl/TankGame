@@ -1,11 +1,12 @@
-using System;
 using Entities;
-using Entities.Entity_Systems;
 using UnityEngine;
 using Utilities;
 
 namespace Home
 {
+    /// <summary>
+    /// Zone that heals the player once on contact
+    /// </summary>
     public class HealingZone : MonoBehaviour
     {
         #region Attributes
@@ -41,7 +42,7 @@ namespace Home
             Heal(target);
         }
         
-        private void Heal(Transform targetTransform)
+        private void Heal(Component targetTransform)
         {
             if (!targetTransform.TryGetComponent(out MortalEntity targetEntity)) return;
             

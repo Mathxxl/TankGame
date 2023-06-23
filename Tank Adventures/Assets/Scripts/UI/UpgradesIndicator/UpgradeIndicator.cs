@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace UI.UpgradesIndicator
 {
+    /// <summary>
+    /// UI element that gives information regarding an upgrade possessed by the player
+    /// </summary>
     public class UpgradeIndicator : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private GameObject descriptionHolder;

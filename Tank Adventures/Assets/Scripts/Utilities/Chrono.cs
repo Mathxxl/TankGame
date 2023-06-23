@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Class that acts as a chronometer
+    /// </summary>
     public class Chrono : MonoBehaviour
     {
         [SerializeField] private float startTime;

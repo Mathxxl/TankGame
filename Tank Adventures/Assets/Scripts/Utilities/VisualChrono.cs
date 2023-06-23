@@ -1,10 +1,12 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 namespace Utilities
 {
+    /// <summary>
+    /// Class that manages a visual representation of a chronometer
+    /// </summary>
     public class VisualChrono : MonoBehaviour
     {
         [SerializeField] private Chrono chrono;
@@ -46,6 +48,9 @@ namespace Utilities
             Display();
         }
         
+        /// <summary>
+        /// Converts a number of seconds into minutes, seconds and centiseconds
+        /// </summary>
         private void Convert(float totalSeconds)
         {
             _min = (int) (totalSeconds / 60);
@@ -62,6 +67,9 @@ namespace Utilities
             chronoText.text = ToDisplayNumber(_min) + ":" + ToDisplayNumber(_seconds) + ":" + ToDisplayNumber(_centi);
         }
 
+        /// <summary>
+        /// Converts a float number into a 2-digit string
+        /// </summary>
         private string ToDisplayNumber(float number)
         {
             if (number < 10)

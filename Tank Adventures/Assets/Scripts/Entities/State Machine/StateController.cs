@@ -42,12 +42,9 @@ namespace Entities.State_Machine
         //Change to newState by exiting currentState, changing its value and entering the new state
         protected void ChangeState(State newState)
         {
-            Debug.Log($"Change state from {_currentState} to {newState}");
             _currentState?.OnStateExit();
             _currentState = newState;
             _currentState.OnStateEnter(this);
-            Debug.Log($"newState = to {_currentState}");
-            
         }
         
         protected virtual void TransitionSetup(){}

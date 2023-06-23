@@ -4832,6 +4832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 80d4cac80bda0884c834626966850a58, type: 2}
   manager: {fileID: 0}
+  darkZonePrefab: {fileID: 2214322182363995773, guid: 258aafbe24f7f634d940a76c577b3ad1, type: 3}
 --- !u!1 &1597712067
 GameObject:
   m_ObjectHideFlags: 0

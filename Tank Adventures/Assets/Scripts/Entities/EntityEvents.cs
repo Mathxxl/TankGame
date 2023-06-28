@@ -86,5 +86,9 @@ namespace Entities
         
         //Spawn
         public Action OnPlayerSpawned;
+        
+        //Targeting
+        public Action<Transform> OnTargetAcquired;
+        public Action OnTargetLost;
     }
 }

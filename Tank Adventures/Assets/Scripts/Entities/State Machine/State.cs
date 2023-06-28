@@ -49,7 +49,6 @@ namespace Entities.State_Machine
         
         protected void NextState()
         {
-            Debug.Log("NextState Event");
             OnNextState?.Invoke();
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   entityName: Player
-  lifePoint: 10
+  lifePoint: 50
   attack: 1
   attackSpeed: 0.2
   defense: 0

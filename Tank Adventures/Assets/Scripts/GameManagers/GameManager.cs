@@ -16,7 +16,6 @@ namespace GameManagers
 
         private void OnEnable()
         {
-            SceneManager.sceneLoaded += (_,_) => { Debug.Log("SceneManager.sceneLoaded event callback"); };
             SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         }
 
@@ -28,14 +27,14 @@ namespace GameManagers
         private void Start()
         {
             //Events.OnFirstGameStart?.Invoke();
-            Events.OnLevelReached?.Invoke();
+            //Events.OnLevelReached?.Invoke(); //should be done by th sceneManagerOnSceneLoaded
             Events.OnZoneStart?.Invoke();
             Events.OnLevelStart?.Invoke();
         }
 
         private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            Debug.Log($"Scene loaded : {scene.name} in mode {loadSceneMode}");
+            Debug.Log($"Scene loaded : {scene.name}");
             Events.OnLevelReached?.Invoke();
         }
 

@@ -156,11 +156,11 @@ namespace GameManagers
             currentWorld.OnWorldExit();
 
             //CHANGE
-            gameManager.Events.OnWorldChanged?.Invoke(type);
+            gameManager.Events.OnWorldChanged?.Invoke(w.Type);
             currentWorld = w;
 
             //ENTER
-            gameManager.Events.OnWorldJoin?.Invoke(type);
+            gameManager.Events.OnWorldJoin?.Invoke(w.Type);
             currentWorld.OnWorldEnter();
         }
 

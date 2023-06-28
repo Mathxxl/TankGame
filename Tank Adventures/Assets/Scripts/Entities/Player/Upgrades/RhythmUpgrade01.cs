@@ -17,28 +17,50 @@ namespace Entities.Player.Upgrades
     {
         [SerializeField] private AudioManager audioManager;
         [SerializeField][Range(0f,1f)] private float rhythmFloor = 0.5f;
+        [SerializeField] private GameObject visualRepresentationPrefab;
+        [SerializeField] private GameObject visualRepresentationParent;
         private int _currentBpm;
         private RhythmDescriptor _rhythm;
+        private GameObject _visualRepresentation;
+
+        public RhythmDescriptor Rhythm
+        {
+            get => _rhythm;
+            private set
+            {
+                _rhythm = value;
+                OnRhythmChange?.Invoke(_rhythm);
+            }
+        }
 
         private void OnDisable()
         {
             StopCoroutine(OnRhythm());
-            
-            if(manager != null) manager.ThisEntity.Events.OnPerformingAttack -= OnShoot;
+
+            if (manager == null) return;
+            manager.ThisEntity.Events.OnPerformingAttack -= OnShoot;
+            manager.ThisEntity.GameManager.Events.OnLevelReached -= SetBpm;
         }
 
         protected override void UpgradeObtained()
         {
             //Values
             audioManager ??= FindObjectOfType<AudioManager>();
-            _currentBpm = GetBpm();
-            
+
             //Events linkage
             manager.ThisEntity.Events.OnPerformingAttack += OnShoot;
+            manager.ThisEntity.GameManager.Events.OnLevelReached += SetBpm;
             
             //Behaviours
             StartCoroutine(OnRhythm());
+            
             //TODO : Ajouter représentation graphique
+            //Visual
+            if (visualRepresentationPrefab != null)
+            {
+                _visualRepresentation = Instantiate(visualRepresentationPrefab, (visualRepresentationParent != null) ? visualRepresentationParent.transform : transform);
+                if (_visualRepresentation.TryGetComponent(out VisualRhythm vr)) vr.rUpgrade = this;
+            }
         }
 
         protected override void UpgradeUpdate()
@@ -95,6 +117,11 @@ namespace Entities.Player.Upgrades
             if (audioManager == null || audioManager.CurrentMusic == null) return -1;
             return audioManager.CurrentMusic.bpm;
         }
+
+        private void SetBpm()
+        {
+            _currentBpm = GetBpm();
+        }
         
         /// <summary>
         /// Coroutine that changes the _rhythm value over time
@@ -113,20 +140,25 @@ namespace Entities.Player.Upgrades
 
                 //TOO SOON
 
-                _rhythm = RhythmDescriptor.TooSoon;
-                yield return new WaitForSeconds(60f/(_currentBpm*2f));
+                //Debug.Log("********** TOO SOON **************");
+                Rhythm = RhythmDescriptor.TooSoon;
+                yield return new WaitForSeconds(60f / (_currentBpm * 2f));
                 
                 //PERFECT
 
-                _rhythm = RhythmDescriptor.Perfect;
+                //Debug.Log("********** PERFECT **************");
+                Rhythm = RhythmDescriptor.Perfect;
                 yield return new WaitForSeconds(rhythmFloor);
                 
                 //TOO LATE
 
-                _rhythm = RhythmDescriptor.TooLate;
-                yield return new WaitForSeconds(60f/(_currentBpm*2f));
+                //Debug.Log("********** TOO LATE **************");
+                Rhythm = RhythmDescriptor.TooLate;
+                yield return new WaitForSeconds(60f / (_currentBpm * 2f));
                 
             }
         }
+
+        public event Action<RhythmDescriptor> OnRhythmChange;
     }
 }

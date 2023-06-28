@@ -1,3 +1,4 @@
+using System;
 using Entities.Enemy.States;
 using Entities.State_Machine;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Entities.Enemy
     public class EnemyStateController : StateController
     {
         public NavMeshAgent agent;
+        protected bool Moving;
         
         #region States
         
@@ -46,7 +48,7 @@ namespace Entities.Enemy
             idleState.OnNextState += SetPatrol; //Patrol after idle
             patrolState.TargetFound += SetChase; //Chase after a target is found
             chaseState.OnPlayerLost += SetPatrol; //Patrol after target is lost
-            entity.GameManager.Events.OnGoalAchieved += SetIdle;
+            if(entity.GameManager != null) entity.GameManager.Events.OnGoalAchieved += SetIdle;
         }
         #endregion
 
@@ -73,6 +75,21 @@ namespace Entities.Enemy
             ChangeState(idleState);
         }
         
+        //Events
+        private void FixedUpdate()
+        {
+            if (agent.velocity != Vector3.zero && !Moving)
+            {
+                entity.Events.OnStartMoving?.Invoke();
+                Moving = true;
+            }
+
+            if (agent.velocity == Vector3.zero && Moving)
+            {
+                entity.Events.OnStopMoving?.Invoke();
+                Moving = false;
+            }
+        }
 
         #endregion
         

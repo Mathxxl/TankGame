@@ -5,10 +5,10 @@ namespace Entities.Entity_Systems
 {
     public class AnimationController : EntitySystem
     {
-        [SerializeField] private Animator animator;
+        [SerializeField] protected Animator animator;
         private static readonly int ShootTrigger = Animator.StringToHash("ShootTrigger");
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             if (animator == null)
             {
@@ -19,14 +19,14 @@ namespace Entities.Entity_Systems
             entity.Events.OnPerformingAttack += () => StartAnimation(ShootTrigger);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             if (animator == null) return;
             
             entity.Events.OnPerformingAttack -= () => StartAnimation(ShootTrigger);
         }
 
-        private void StartAnimation(int id)
+        protected void StartAnimation(int id)
         {
             animator.SetTrigger(id);
         }

@@ -16,6 +16,8 @@ namespace Entities.Enemy.States
         [SerializeField] private float chaseRotSpeed = 180f; //rotation speed when chasing
         [SerializeField] private float loseDistance = 15f; //stop following its target when its further than this distance
         [SerializeField] private float goalDistance = 3f; //stop moving towards its target when its closer than this distance
+        [SerializeField] private float attackDistance = float.MaxValue; //distance from which the enemy attacks
+        [SerializeField] private bool isHandToHand;
 
         private Transform _myTransform;
         private Transform _target;
@@ -61,6 +63,7 @@ namespace Entities.Enemy.States
             if (TargetLost())
             {
                 OnPlayerLost?.Invoke();
+                Controller.ControllerEntity.Events.OnTargetLost?.Invoke();
             }
             else
             {
@@ -70,7 +73,15 @@ namespace Entities.Enemy.States
                     Chase();
                 //}
                 Turn();
+
+                if (!(Vector3.Distance(_myTransform.position, _target.position) < attackDistance)) return;
+                
+                if (isHandToHand)
+                {
+                    if (Agent.velocity != Vector3.zero) return;
+                }
                 _weapon.ToAttack();
+
             }
         }
 

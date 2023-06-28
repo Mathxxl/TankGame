@@ -53,4 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rhythm03.unity
     guid: 89eb33c556459ed49846fd7245542a7f
+  - enabled: 1
+    path: Assets/Scenes/Horror02_00.unity
+    guid: b08481f1d25854f4fa9c66e3e5f86d48
+  - enabled: 1
+    path: Assets/Scenes/Horror03_00.unity
+    guid: 40df808fd6c020240b994ea499ef68b7
   m_configObjects: {}

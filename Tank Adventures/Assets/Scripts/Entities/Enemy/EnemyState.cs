@@ -20,6 +20,7 @@ namespace Entities.Enemy
         protected void ToTargetFound(Transform t)
         {
             TargetFound?.Invoke(t);
+            Controller.ControllerEntity.Events.OnTargetAcquired?.Invoke(t);
         }
 
         //Add agent

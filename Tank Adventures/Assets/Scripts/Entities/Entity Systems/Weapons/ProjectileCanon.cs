@@ -96,7 +96,7 @@ namespace Entities.Entity_Systems.Weapons
             //If improved projectile improve damages
             if (subweapon != null && _improvedProjectile == subweapon)
             {
-                Debug.Log("subweapon found and improve damages");
+                Debug.Log($"subweapon found and improve damages; impact with {subweapon.name}");
                 damageable.TakeDamages(_improvedTotal);
             }
             else
@@ -115,6 +115,7 @@ namespace Entities.Entity_Systems.Weapons
         {
             _improvedProjectile = _lastProjectile;
             _improvedTotal = _totalDamages * (1.0f + value);
+            Debug.Log($"improved projectile is {_improvedProjectile.name}");
         }
 
         protected void ImproveDamagesForOneHitFixed(float value)

@@ -88,6 +88,7 @@ namespace World
             yield return null;
             manager.GManager.Events.OnZoneStart?.Invoke();
             manager.GManager.Events.OnLevelStart?.Invoke();
+            Debug.Log("World Start Events");
         }
 
         /// <summary>

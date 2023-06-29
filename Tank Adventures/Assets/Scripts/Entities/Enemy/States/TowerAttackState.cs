@@ -43,10 +43,9 @@ namespace Entities.Enemy.States
         private void RotateTower()
         {
             //Visuals
-            var subTarget = _target;
             var pos = _target.position;
-            subTarget.position = new Vector3(pos.x, _tower.transform.position.y, pos.z);
-            _tower.transform.LookAt(subTarget);
+            var subPosition = new Vector3(pos.x, _tower.transform.position.y, pos.z);
+            _tower.transform.LookAt(subPosition);
             
             //Real canon
             realCanon.transform.LookAt(_target);

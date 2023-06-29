@@ -26,11 +26,21 @@ namespace Utilities
             }
         }
 
+        private void OnTriggerExit(Collider other)
+        {
+            var obj = other.gameObject;
+            if (CompareAllTags(obj))
+            {
+                OnEntityLeft?.Invoke(obj.transform);
+            }
+        }
+
         private bool CompareAllTags(GameObject obj)
         {
             return detectableTags.Any(obj.CompareTag);
         }
 
         public event Action<Transform> OnEntityDetected;
+        public event Action<Transform> OnEntityLeft;
     }
 }

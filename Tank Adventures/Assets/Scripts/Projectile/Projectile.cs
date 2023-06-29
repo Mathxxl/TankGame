@@ -54,7 +54,7 @@ namespace Projectile
         #region Public Methods
 
         //Release the projectile if linked to a pool, else destroy it
-        public void DestroyObject()
+        public virtual void DestroyObject()
         {
             if (LinkedPool != null)
             {
@@ -77,18 +77,18 @@ namespace Projectile
             SetSizeObject();
         }
 
-        protected void OnEnable()
+        protected virtual void OnEnable()
         {
             Move(); 
             StartCoroutine(LifeControl());
         }
 
-        protected void OnDisable()
+        protected virtual void OnDisable()
         {
             StopCoroutine(LifeControl());
         }
         
-        private void Start()
+        protected virtual void Start()
         {
             if (weapon != null)
             {

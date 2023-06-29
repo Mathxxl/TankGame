@@ -6,6 +6,7 @@ namespace Entities.State_Machine
     /// <summary>
     /// Abstract class for States of State Machines
     /// </summary>
+    [Serializable]
     public abstract class State
     {
         #region Attributes

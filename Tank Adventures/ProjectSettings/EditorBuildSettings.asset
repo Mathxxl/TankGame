@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Horror03_00.unity
     guid: 40df808fd6c020240b994ea499ef68b7
+  - enabled: 1
+    path: Assets/Scenes/Future02_00.unity
+    guid: 401595538359ba144a1fac81733e1ecd
+  - enabled: 1
+    path: Assets/Scenes/Future03_00.unity
+    guid: 87bf3efb50194f3478938b68ca5c82a1
   m_configObjects: {}

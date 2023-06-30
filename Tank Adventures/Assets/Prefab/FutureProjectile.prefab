@@ -67,6 +67,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FutureProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 3961293525469456131, guid: 107799654d55dbd489573f3563a64a90, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961293525469456131, guid: 107799654d55dbd489573f3563a64a90, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961293525469456131, guid: 107799654d55dbd489573f3563a64a90, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 805953977972826196, guid: 107799654d55dbd489573f3563a64a90, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 107799654d55dbd489573f3563a64a90, type: 3}

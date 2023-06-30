@@ -54,6 +54,12 @@ namespace Entities.Player.Player_Systems
                 _moving = true;
             }
 
+            /*var vel = _rb.velocity;
+            if (vel != Vector3.zero)
+            {
+                _rb.velocity = AdjustVelocityToSlope(vel);
+            }*/
+            
             Move();
             Turn();
         }
@@ -101,6 +107,24 @@ namespace Entities.Player.Player_Systems
         private void ImproveSpeedFixed(float value)
         {
             Speed += value;
+        }
+
+        private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+        {
+            var ray = new Ray(entity.transform.position, Vector3.down);
+
+            if (UnityEngine.Physics.Raycast(ray, out RaycastHit hit, 0.2f))
+            {
+                var slopeRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                var adjustVelocity = slopeRotation * velocity;
+
+                if (adjustVelocity.y < 0)
+                {
+                    return adjustVelocity;
+                }
+            }
+
+            return velocity;
         }
 
         #endregion

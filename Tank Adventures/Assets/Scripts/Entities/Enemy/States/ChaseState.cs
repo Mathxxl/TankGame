@@ -90,7 +90,7 @@ namespace Entities.Enemy.States
         #region Private Methods
 
         //Move towards its target
-        private void Chase()
+        protected void Chase()
         {
             //_myTransform.position = Vector3.MoveTowards(_myTransform.position, _target.position, Time.deltaTime * chaseSpeed);
             Agent.SetDestination(_target.position);

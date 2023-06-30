@@ -115,6 +115,9 @@ namespace Entities.Entity_Systems.Weapons
         {
             _improvedProjectile = _lastProjectile;
             _improvedTotal = _totalDamages * (1.0f + value);
+
+            if (_improvedProjectile == null) return;
+            
             Debug.Log($"improved projectile is {_improvedProjectile.name}");
         }
 

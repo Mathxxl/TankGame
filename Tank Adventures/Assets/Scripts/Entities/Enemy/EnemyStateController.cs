@@ -26,12 +26,12 @@ namespace Entities.Enemy
 
         #region Mono Behaviours
 
-        protected void Start()
+        protected virtual void Start()
         {
             ChangeState(idleState); //not in awake to avoid problems
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             idleState.OnNextState -= SetPatrol;
             patrolState.TargetFound -= SetChase;
@@ -70,7 +70,7 @@ namespace Entities.Enemy
         }
 
         //Change to idle state
-        private void SetIdle()
+        protected void SetIdle()
         {
             ChangeState(idleState);
         }

@@ -65,4 +65,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Future03_00.unity
     guid: 87bf3efb50194f3478938b68ca5c82a1
+  - enabled: 1
+    path: Assets/Scenes/Race02_00.unity
+    guid: b0d02503c3f1ec54b9889d8a1c347516
+  - enabled: 1
+    path: Assets/Scenes/Race03_00.unity
+    guid: ecc91866a5237d3429f204f434be5eda
   m_configObjects: {}

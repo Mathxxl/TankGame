@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Entities;
@@ -15,29 +16,43 @@ namespace Camera
         [SerializeField] private float mMinSize = 6.5f;                  // The smallest orthographic size the camera can be.
         [SerializeField] private List<Transform> mTargets; // All the targets the camera needs to encompass.
         [SerializeField] private Vector3 compensation;
+        [SerializeField] private Transform normalPosition;
+        [SerializeField] private Transform rhythmPosition;
+        [SerializeField] private Transform racePosition;
 
         private UnityEngine.Camera _mCamera;                        // Used for referencing the camera.
         private float _mZoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
         private Vector3 _mMoveVelocity;                 // Reference velocity for the smooth damping of the position.
         private Vector3 _mDesiredPosition;              // The position the camera is moving towards.
         private List<Entity> _entities;
-
-        private void Awake ()
-        {
-            _mCamera = GetComponentInChildren<UnityEngine.Camera> ();
-            _entities = new List<Entity>();
+        private CameraMode _mode;
         
+        
+        public CameraMode Mode
+        {
+            get => _mode;
+            set
+            {
+                _mode = value;
+                SetCameraWithMode();
+            }
+        }
+
+        private void Awake()
+        {
+            _mCamera = GetComponentInChildren<UnityEngine.Camera>();
+            _entities = new List<Entity>();
+            Mode = CameraMode.Normal;
+            
             //Manage compensation
             FindAveragePosition();
             compensation = transform.position - _mDesiredPosition;
-        
+
             //Find player if no targets
             if (mTargets == null || mTargets.Count == 0)
             {
                 mTargets = new List<Transform>(){GameObject.Find("Player").transform};
             }
-        
-            
         }
 
         private void OnEnable()
@@ -51,19 +66,19 @@ namespace Camera
         }
 
 
-        private void FixedUpdate ()
+        private void FixedUpdate()
         {
             if (mTargets.Count == 0) return;
         
             // Move the camera towards a desired position.
-            Move ();
+            Move();
 
             // Change the size of the camera based.
-            Zoom ();
+            Zoom();
         }
 
 
-        private void Move ()
+        private void Move()
         {
             // Find the average position of the targets.
             FindAveragePosition();
@@ -141,7 +156,7 @@ namespace Camera
         }
 
 
-        public void SetStartPositionAndSize ()
+        public void SetStartPositionAndSize()
         {
             // Find the desired position.
             FindAveragePosition ();
@@ -177,6 +192,36 @@ namespace Camera
         private void OnTargetDeath(Transform target)
         {
             mTargets.Remove(target);
+        }
+
+        private void SetCameraWithMode()
+        {
+            if (_entities.Count == 0) return;
+            
+            switch (Mode)
+            {
+                case CameraMode.Normal:
+                    if (normalPosition == null) return; 
+                    SetModePosition(normalPosition);
+                    break;
+                case CameraMode.Race:
+                    if (racePosition == null) return;
+                    SetModePosition(racePosition);
+                    break;
+                case CameraMode.Rhythm:
+                    if (rhythmPosition == null) return;
+                    SetModePosition(rhythmPosition);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
+        private void SetModePosition(Transform target)
+        {
+            var thisTransform = transform;
+            thisTransform.position = target.position;
+            thisTransform.rotation = target.rotation;
         }
     }
 }

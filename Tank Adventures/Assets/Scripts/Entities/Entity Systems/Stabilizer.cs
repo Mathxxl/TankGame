@@ -28,6 +28,9 @@ namespace Entities.Entity_Systems
         private Quaternion _registeredRotation;
         private Vector3 _registeredPosition;
 
+        public bool stayGrounded;
+        public float maxHeight;
+
         #endregion
 
         #region Methods
@@ -52,6 +55,11 @@ namespace Entities.Entity_Systems
             {
                 Debug.Log("TURNED");
                 onTurned?.Invoke();
+            }
+
+            if (stayGrounded)
+            {
+                CheckGround();
             }
         }
 
@@ -88,6 +96,18 @@ namespace Entities.Entity_Systems
             //TODO
             //var currentRot = _myTransform.rotation;
             //return (Quaternion.Angle(currentRot, _registeredRotation) >= 90);
+        }
+        
+        private void CheckGround()
+        {
+            RaycastHit hit;
+            const int layerMask = 1 << 3;
+            if (!UnityEngine.Physics.Raycast(entity.transform.position, -entity.transform.up, out hit, Mathf.Infinity,
+                    layerMask)) return;
+            if (hit.distance > maxHeight)
+            {
+                ForceGround();
+            }
         }
 
         #endregion
@@ -144,6 +164,14 @@ namespace Entities.Entity_Systems
                 rb.velocity = Vector3.zero;
             }
         }
+
+        private void ForceGround()
+        {
+            if (!entity.TryGetComponent(out Rigidbody rb)) return;
+            
+            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
+        }
+
 
         #endregion
         

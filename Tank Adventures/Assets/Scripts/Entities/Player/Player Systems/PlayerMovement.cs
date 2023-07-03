@@ -18,6 +18,7 @@ namespace Entities.Player.Player_Systems
 
         [SerializeField] private float speed = 15f;
         [SerializeField] private float turnSpeed = 180f;
+        [SerializeField] private float maxSpeedFactor = 4f;
 
         public float Speed
         {
@@ -87,6 +88,11 @@ namespace Entities.Player.Player_Systems
 
         private void Move()
         {
+            if (_rb.velocity.magnitude > speed * maxSpeedFactor)
+            {
+                Debug.Log($"LIMITING SPEED : {_rb.velocity.magnitude} vs {speed*maxSpeedFactor}");
+            }
+            
             _rb.AddForce(transform.forward * (_moveVector.magnitude * speed));
         }
 

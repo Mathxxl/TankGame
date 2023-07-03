@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Camera;
 using GameManagers;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -108,6 +109,18 @@ namespace World
                     }
                 }
                 _scenesByLevel[level].Add(scene);
+            }
+        }
+
+        protected void ChangeCameraMode(CameraMode newMode)
+        {
+            Debug.Log("ChangeCameraMode");
+            
+            if (manager.GManager.playerCamera != null &&
+                manager.GManager.playerCamera.TryGetComponent(out CameraBehaviour cameraBehaviour))
+            {
+                cameraBehaviour.Mode = newMode;
+                Debug.Log($"New mode = {newMode}");
             }
         }
     }

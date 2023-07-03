@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Camera;
+using Entities.Entity_Systems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,6 +44,17 @@ namespace World
             //Events
             chrono.OnGoalTimeReached += PlayerFailedToReachGoal;
             manager.GManager.Events.OnLevelReached += LevelStart;
+            
+            //Others
+            if (manager.GManager.Player.transform.GetChild(0).TryGetComponent(out Stabilizer stabilizer))
+            {
+                Debug.Log("stay grounded = true");
+                stabilizer.stayGrounded = true;
+                stabilizer.maxHeight = 1.0f;
+            }
+
+            ChangeCameraMode(CameraMode.Race);
+            
         }
 
         protected override void OnExit()
@@ -53,6 +66,14 @@ namespace World
             
             //Components
             chrono.gameObject.SetActive(false);
+            
+            //Others
+            if (manager.GManager.Player.transform.GetChild(0).TryGetComponent(out Stabilizer stabilizer))
+            {
+                stabilizer.stayGrounded = false;
+            }
+            
+            ChangeCameraMode(CameraMode.Normal);
         }
 
         protected override void OnUpdate() { }

@@ -12,7 +12,13 @@ namespace GameManagers
     {
         [SerializeField] private Entity player;
         public Entity Player => player;
+        public UnityEngine.Camera playerCamera;
         public ManagerEvents Events = new();
+
+        private void Awake()
+        {
+            if (playerCamera == null) playerCamera = UnityEngine.Camera.main;
+        }
 
         private void OnEnable()
         {

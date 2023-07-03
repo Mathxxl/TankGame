@@ -32,6 +32,12 @@ namespace Entities.Enemy.States
         {
             base.OnEnter();
             
+          
+            if(Controller == null){
+                Debug.LogWarning("PatrolState.OnEnter() : Controller is null");
+                return;
+            }
+            
             //Components setup
             _myTransform = Controller.transform;
             

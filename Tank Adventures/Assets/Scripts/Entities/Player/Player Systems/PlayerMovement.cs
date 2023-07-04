@@ -20,6 +20,8 @@ namespace Entities.Player.Player_Systems
         [SerializeField] private float turnSpeed = 180f;
         [SerializeField] private float maxSpeedFactor = 4f;
 
+        public bool canRotate = true;
+        
         public float Speed
         {
             get => speed;
@@ -92,13 +94,19 @@ namespace Entities.Player.Player_Systems
             {
                 Debug.Log($"LIMITING SPEED : {_rb.velocity.magnitude} vs {speed*maxSpeedFactor}");
             }
+
+            if (!canRotate)
+            {
+                var posNegCheck = _moveVector.x + _moveVector.y;
+                _rb.AddForce(transform.right * ((posNegCheck > 0 ? 1 : -1) * _moveVector.magnitude * speed));
+            }
+            else _rb.AddForce(transform.forward * (_moveVector.magnitude * speed));
             
-            _rb.AddForce(transform.forward * (_moveVector.magnitude * speed));
         }
 
         private void Turn()
         {
-            if (_moveVector == Vector2.zero) return;
+            if (_moveVector == Vector2.zero || !canRotate) return;
             
             var movementDirection = new Vector3(_moveVector.x, 0f, _moveVector.y);
             var toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);

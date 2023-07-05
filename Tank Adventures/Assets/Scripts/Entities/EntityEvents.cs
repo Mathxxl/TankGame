@@ -24,7 +24,7 @@ namespace Entities
         public Action<float> OnHealed;
     
         //Collision Events
-        public Action<Transform> OnCollision; //Collision with something
+        public Action<Collision> OnCollision; //Collision with something
     
         //UI Events
     

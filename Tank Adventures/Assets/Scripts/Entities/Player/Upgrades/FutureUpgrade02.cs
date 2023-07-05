@@ -36,12 +36,14 @@ namespace Entities.Player.Upgrades
             manager.ThisEntity.Events.OnCollision -= DamageOnCollision;
         }
 
-        private void DamageOnCollision(Transform target)
+        private void DamageOnCollision(Collision collision)
         {
+            var target = collision.transform;
+            
             if (!manager.ThisEntity.TryGetComponent(out Rigidbody rb)) return;
             if (!target.TryGetComponent(out IDamageable damageable)) return;
-            
-            var speed = rb.velocity.magnitude;
+
+            var speed = collision.relativeVelocity.magnitude;
             var vDamages = GetValues(UpgradeData.UpgradeValuesType.Damages);
             if (vDamages == null) return;
             

@@ -51,7 +51,7 @@ namespace World.RhythmPackage
         private IEnumerator SpawnObjectRoutine(RhythmMapObject mapObject)
         {
             yield return new WaitForSeconds(mapObject.timing * _currentTime);
-            var toSpawnObj = _referencesSystem._dicObj[mapObject.type];
+            var toSpawnObj = _referencesSystem.DicObj[mapObject.type];
             SpawnObject(toSpawnObj, mapObject.x, mapObject.y);
         }
 

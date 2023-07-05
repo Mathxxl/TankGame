@@ -23,6 +23,7 @@ namespace World
                     _playerMovement.canRotate = false;
                 }
             }
+            manager.GManager.Player.Events.OnImproveSpeedFixed?.Invoke(100);
             
             //Camera
             _pCamera = manager.GManager.playerCamera;
@@ -44,6 +45,8 @@ namespace World
             {
                 _playerMovement.canRotate = true;
             }
+            
+            manager.GManager.Player.Events.OnImproveSpeedFixed?.Invoke(-100);
             
             //Camera
             if (_pCamera != null)

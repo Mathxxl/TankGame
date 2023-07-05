@@ -2,6 +2,7 @@
 using System.Linq;
 using CustomEditor;
 using Entities.Entity_Systems;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Utilities
@@ -13,10 +14,13 @@ namespace Utilities
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Stabilizer stabilizer) && tags.Any(other.CompareTag))
-            {
-                stabilizer.RegisterCurrentTransform();
-            }
+            if (!tags.Any(other.CompareTag)) return;
+            
+            var stab = other.GetComponentInChildren<Stabilizer>();
+            
+            if (stab == null) return;
+            
+            stab.RegisterCurrentTransform();
         }
     }
 }

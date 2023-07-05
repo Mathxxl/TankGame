@@ -1,4 +1,6 @@
-﻿using Entities;
+﻿using System.Linq;
+using CustomEditor;
+using Entities;
 using UnityEngine;
 
 namespace Physics.Explosion
@@ -11,7 +13,8 @@ namespace Physics.Explosion
         [SerializeField] private float explosionForce = 10f;
         [SerializeField] private float explosionRadius = 10f;
         [SerializeField] private ParticleSystem explosionEffect;
-
+        [SerializeField][TagSelector] private string[] toExcludeTags;
+        
         private Collider[] _colliders = new Collider[20];
 
         private void Awake()
@@ -33,7 +36,7 @@ namespace Physics.Explosion
             
             foreach (var col in _colliders)
             {
-                if (col == null || !col.TryGetComponent(out Rigidbody rb)) continue;
+                if (col == null || !col.TryGetComponent(out Rigidbody rb) || toExcludeTags.Any(col.CompareTag)) continue;
                 if (col.gameObject.TryGetComponent(out MortalEntity mortalEntity) && mortalEntity.Invincible) continue;
                 
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);

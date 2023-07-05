@@ -24,6 +24,8 @@ namespace Entities.Entity_Systems
         [Tooltip("Hauteur du vide en Y")]
         [SerializeField] private float voidY; //hauteur du vide en Y
 
+        [SerializeField] private float skyY;
+
         private Transform _myTransform;
         private Quaternion _registeredRotation;
         private Vector3 _registeredPosition;
@@ -60,6 +62,12 @@ namespace Entities.Entity_Systems
             if (stayGrounded)
             {
                 CheckGround();
+            }
+
+            if (CheckAltitude())
+            {
+                Debug.Log("Too high in the sky");
+                ResetPlayerPosition();
             }
         }
 
@@ -110,6 +118,11 @@ namespace Entities.Entity_Systems
             }
         }
 
+        private bool CheckAltitude()
+        {
+            return (_myTransform.position.y >= skyY);
+        }
+
         #endregion
 
         #region Entity Specific Methods
@@ -117,10 +130,8 @@ namespace Entities.Entity_Systems
         //PLAYER
         public void OnPlayerFall()
         {
-            _myTransform.position = new Vector3(_registeredPosition.x, _registeredPosition.y + 2, _registeredPosition.z);
-            _myTransform.rotation = _registeredRotation;
+            ResetPlayerPosition();
             TryDamage(1f);
-            TryStop();
         }
 
         public void OnPlayerTurned()
@@ -169,7 +180,14 @@ namespace Entities.Entity_Systems
         {
             if (!entity.TryGetComponent(out Rigidbody rb)) return;
             
-            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * rb.velocity.magnitude, ForceMode.Impulse);
+        }
+
+        private void ResetPlayerPosition()
+        {
+            _myTransform.position = new Vector3(_registeredPosition.x, _registeredPosition.y + 2, _registeredPosition.z);
+            _myTransform.rotation = _registeredRotation;
+            TryStop();
         }
 
 

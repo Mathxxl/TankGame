@@ -27,10 +27,15 @@ namespace Entities.Enemy
         protected override void OnEnter()
         {
             base.OnEnter();
+            
+            Debug.Log($"Controller = {Controller}");
+            
             if (Controller is EnemyStateController esc)
             {
                 Agent = esc.agent;
             }
+            
+            Debug.Log($"Controller = {Controller}");
         }
     }
 }

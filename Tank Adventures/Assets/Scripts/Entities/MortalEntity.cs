@@ -103,6 +103,11 @@ namespace Entities
             Events.OnHeal -= Heal;
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            Events.OnCollision?.Invoke(collision);
+        }
+
         private void OnLevelStart() //ADD WORLD TYPE ?
         {
             _invincible = false;

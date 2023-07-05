@@ -42,6 +42,8 @@ namespace Entities.Enemy.States
         {
             base.OnEnter();
             
+            Debug.Log($"Controller = {Controller}");
+            
             //Components setup
             _myTransform = Controller.transform;
             if (_myTransform.TryGetComponent(out Weapon w))

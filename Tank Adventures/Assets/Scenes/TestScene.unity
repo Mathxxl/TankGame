@@ -184,6 +184,7 @@ MonoBehaviour:
   rhythmFloor: 0.5
   visualRepresentationPrefab: {fileID: 4925402294044884307, guid: 7fb43a3f212be364d98365c6ce32029e, type: 3}
   visualRepresentationParent: {fileID: 1272247772}
+  explosionPrefab: {fileID: 0}
 --- !u!114 &142505432 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4504688492435850352, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
@@ -4422,9 +4423,9 @@ MonoBehaviour:
   scenes:
   - sceneName: Rhythm01
     level: 0
-  - sceneName: Rhythm02
+  - sceneName: Rhythm02_00
     level: 1
-  - sceneName: Rhythm03
+  - sceneName: Rhythm03_00
     level: 2
 --- !u!1 &1337255940
 GameObject:
@@ -6074,6 +6075,10 @@ PrefabInstance:
       propertyPath: m_MaxPlayerCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4395570130150035066, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4504688491896850486, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: range
       value: 14
@@ -6289,6 +6294,10 @@ PrefabInstance:
     - target: {fileID: 8123935314412720276, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8123935314412720276, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8150031654996972880, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMax.x

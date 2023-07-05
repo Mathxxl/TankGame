@@ -14,7 +14,7 @@ namespace World.RhythmPackage
         }
         [SerializeField] private List<RhythmObj> objectsWithType;
 
-        public Dictionary<RhythmMapObjectType, GameObject> _dicObj { get; private set; }
+        public Dictionary<RhythmMapObjectType, GameObject> DicObj { get; private set; }
 
         private void Awake()
         {
@@ -23,10 +23,10 @@ namespace World.RhythmPackage
 
         private void SetDic()
         {
-            _dicObj = new Dictionary<RhythmMapObjectType, GameObject>();
+            DicObj = new Dictionary<RhythmMapObjectType, GameObject>();
             foreach (var ro in objectsWithType)
             {
-                _dicObj.Add(ro.type, ro.obj);
+                DicObj.Add(ro.type, ro.obj);
             }
         }
     }

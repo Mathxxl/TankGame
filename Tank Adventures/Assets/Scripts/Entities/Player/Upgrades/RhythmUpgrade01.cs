@@ -19,6 +19,7 @@ namespace Entities.Player.Upgrades
         [SerializeField][Range(0f,1f)] private float rhythmFloor = 0.5f;
         [SerializeField] private GameObject visualRepresentationPrefab;
         [SerializeField] private GameObject visualRepresentationParent;
+        [SerializeField] private GameObject explosionPrefab;
         private int _currentBpm;
         private RhythmDescriptor _rhythm;
         private GameObject _visualRepresentation;
@@ -88,7 +89,7 @@ namespace Entities.Player.Upgrades
 
         private void LevelTwo()
         {
-            //TODO : vague d'énergie
+            
         }
         
         /// <summary>
@@ -105,6 +106,11 @@ namespace Entities.Player.Upgrades
                 var values = GetValues(UpgradeData.UpgradeValuesType.Damages);
                 if (values == null) return;
                 manager.ThisEntity.Events.OnImproveDamageForOneHit?.Invoke(values.Value.percentageValue);
+
+                if (Level >= 2 && explosionPrefab != null)
+                {
+                    Instantiate(explosionPrefab, manager.transform);
+                }
             }
             else
             {

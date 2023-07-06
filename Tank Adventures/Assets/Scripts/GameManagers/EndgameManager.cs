@@ -20,6 +20,7 @@ namespace GameManagers
         private void Endgame()
         {
             Debug.Log("Congratulations you have won");
+            gameManager.Events.OnSelectedScene?.Invoke("CreditsScene");
         }
     }
 }

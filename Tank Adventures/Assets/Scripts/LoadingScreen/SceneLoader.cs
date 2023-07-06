@@ -34,6 +34,8 @@ namespace LoadingScreen
         [SerializeField] private Fading fadingSystem;
         [Tooltip("Object holder for everything that should be set inactive when loading")][SerializeField] private GameObject frontHolder;
 
+        [SerializeField] private bool showSplashTwice;
+        
         #endregion
     
         #region Methods
@@ -50,7 +52,7 @@ namespace LoadingScreen
 
         public void ToLoadScene(string sceneName)
         {
-            frontHolder.gameObject.SetActive(false);
+            if(frontHolder != null)frontHolder.gameObject.SetActive(false);
             StartCoroutine(LoadScene(sceneName));
         }
 
@@ -77,16 +79,22 @@ namespace LoadingScreen
                     //On attend que le fade in soit terminé
                     yield return new WaitUntil(() => !fadingSystem.IsFading);
                     //On prépare le fade vers écran noir
-                    fadingSystem.Set(fadingSystem.SplashScreenToGo, null);
-                    fadingSystem.Fade();
+                    if (showSplashTwice)
+                    {
+                        fadingSystem.Set(fadingSystem.SplashScreenToGo, null);
+                        fadingSystem.Fade();
+                    }
                     fillBar.Fade();
                     //On attend que celui-ci soit terminé
                     yield return new WaitUntil(() => !fadingSystem.IsFading);
+                    fillBar.SetActive(false);
+                    if(fadingSystem.SplashScreenToGo != null) fadingSystem.SplashScreenToGo.SetActive(false);
                     //On lance finalement la scène
                     OnSceneLoaded?.Invoke(sceneName);
                     asyncOperation.allowSceneActivation = true;
                 }
 
+                if(frontHolder != null) frontHolder.SetActive(true);
                 yield return null;
             }
         }

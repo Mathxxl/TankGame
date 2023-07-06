@@ -131,12 +131,19 @@ namespace Entities
         private IEnumerator Dying()
         {
             //Event
-            Events.OnDeath?.Invoke();
+            Events.OnDying?.Invoke();
             
             //Animation
+            if (TryGetComponent(out Animator anim))
+            {
+                yield return new WaitForSeconds(0.2f);
+                var length = anim.GetCurrentAnimatorStateInfo(0).length;
+                Debug.Log($"Waiting for {length}");
+                yield return new WaitForSeconds(length);
+            }
             
-            //Wait
-            yield return new WaitForSeconds(0);
+            yield return null;
+            Events.OnDeath?.Invoke();
             
             //Object Destroyed
             DestroyObject();

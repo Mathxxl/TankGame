@@ -112,7 +112,7 @@ namespace LoadingScreen
         private IEnumerator ToFade()
         {
             _fading = true;
-        
+
             float time = 0;
             while (time <= duration)
             {

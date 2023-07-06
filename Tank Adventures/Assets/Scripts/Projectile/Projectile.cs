@@ -27,6 +27,7 @@ namespace Projectile
         protected Transform ThisTransform;
         protected Rigidbody Rb;
         private string _selfTag; //tag of the entity having this weapon
+        private float _initSpeed;
         
         #endregion
 
@@ -75,10 +76,20 @@ namespace Projectile
             ThisTransform = transform;
             Rb ??= GetComponent<Rigidbody>();
             SetSizeObject();
+            _initSpeed = speed;
         }
 
         protected virtual void OnEnable()
         {
+            if (weapon != null)
+            {
+                //Add initial velocity
+                if (weapon.ThisEntity.TryGetComponent(out Rigidbody entityRb))
+                {
+                    speed += entityRb.velocity.magnitude;
+                }
+            }
+            
             Move(); 
             StartCoroutine(LifeControl());
         }
@@ -86,6 +97,7 @@ namespace Projectile
         protected virtual void OnDisable()
         {
             StopCoroutine(LifeControl());
+            speed = _initSpeed;
         }
         
         protected virtual void Start()

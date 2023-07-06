@@ -4554,6 +4554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horror
       objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

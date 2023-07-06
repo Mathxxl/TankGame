@@ -35,7 +35,7 @@ namespace Tuto
                 t += Time.deltaTime;
                 yield return null;
             }
-            gameObject.SetActive(false);
+            if(gameObject != null) gameObject.SetActive(false);
         }
     }
 }

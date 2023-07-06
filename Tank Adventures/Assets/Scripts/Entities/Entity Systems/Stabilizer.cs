@@ -24,7 +24,7 @@ namespace Entities.Entity_Systems
         [Tooltip("Hauteur du vide en Y")]
         [SerializeField] private float voidY; //hauteur du vide en Y
 
-        [SerializeField] private float skyY;
+        [SerializeField] private float skyY = 20;
 
         private Transform _myTransform;
         private Quaternion _registeredRotation;

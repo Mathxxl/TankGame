@@ -46,5 +46,8 @@ namespace GameManagers
         
         //Home
         public Action OnLevelBeforeHome;
+        
+        //Scene
+        public Action<string> OnSelectedScene;
     }
 }

@@ -75,7 +75,8 @@ namespace GameManagers
             }
             else
             {
-                SceneManager.LoadScene(nextLevel);
+                //SceneManager.LoadScene(nextLevel);
+                gameManager.Events.OnSelectedScene?.Invoke(nextLevel);
             }
             Debug.Log($"Next Level would be {nextLevel ?? ">null<"}");
         }

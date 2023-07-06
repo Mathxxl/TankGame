@@ -2,6 +2,7 @@
 using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using World;
 
 namespace GameManagers
 {
@@ -23,11 +24,13 @@ namespace GameManagers
         private void OnEnable()
         {
             SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+            player.Events.OnDeath += PlayerKilled;
         }
 
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
+            player.Events.OnDeath -= PlayerKilled;
         }
 
         private void Start()
@@ -44,10 +47,21 @@ namespace GameManagers
             Events.OnLevelReached?.Invoke();
         }
 
+        private void PlayerKilled()
+        {
+            Events.OnPlayerKilled?.Invoke();
+        }
+
         //TESTING
         public void EndLevel()
         {
             Events.OnGoalAchieved?.Invoke();
+        }
+
+        public void FinalBoss()
+        {
+            Events.OnWorldChosen?.Invoke(WorldType.Final);
+            Events.OnFinalWorldReached?.Invoke();
         }
     }
 }

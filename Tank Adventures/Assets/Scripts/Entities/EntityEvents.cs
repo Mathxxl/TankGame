@@ -19,6 +19,7 @@ namespace Entities
         public Action<float> OnHealthChanged; //The health has changed
         public Action<float> OnTakeDamage; //Damages have been taken
         public Action OnDeath; //The entity is dead
+        public Action OnDying;
         public Action<float> OnMaxHealthChanged; //Max health has changed
         public Action<SModif> OnHeal; //TODO : Ajouter OnHealed pour la valeur fixe ajoutée et OnHeal pour dire qu'il faut soigner cette valeur
         public Action<float> OnHealed;

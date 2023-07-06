@@ -816,6 +816,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   voidY: -100
+  skyY: 20
+  stayGrounded: 0
+  maxHeight: 0
 --- !u!195 &4466517543678609621
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using Entities.Entity_Systems.Weapons;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Entities.Enemy.States
@@ -45,10 +46,20 @@ namespace Entities.Enemy.States
             Debug.Log($"Controller = {Controller}");
             
             //Components setup
+            if (Controller == null)
+            {
+                Debug.LogWarning("Controller is null");
+                return;
+            }
+            
             _myTransform = Controller.transform;
             if (_myTransform.TryGetComponent(out Weapon w))
             {
                 _weapon = w;
+            }
+            else
+            {
+                _weapon = ThisWeapon;
             }
 
             //Agent setup
@@ -82,6 +93,8 @@ namespace Entities.Enemy.States
                 {
                     if (Agent.velocity != Vector3.zero) return;
                 }
+                
+                _weapon.transform.LookAt(_target);
                 _weapon.ToAttack();
 
             }

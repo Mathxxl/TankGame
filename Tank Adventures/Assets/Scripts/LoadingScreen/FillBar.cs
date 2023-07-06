@@ -61,7 +61,7 @@ namespace UI
 
         public void Fade()
         {
-            if (fading)
+            if (fading != null)
             {
                 fading.Fade();
             }

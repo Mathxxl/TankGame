@@ -15,7 +15,7 @@ namespace Entities.Enemy
             entity.Events.OnStopMoving += () => Walk(false);
             entity.Events.OnPerformingAttack += Attack;
             entity.Events.OnTakeDamage += (_) => Damaged();
-            entity.Events.OnDeath += Death;
+            entity.Events.OnDying += Death;
             entity.Events.OnTargetLost += TargetLost;
             entity.Events.OnTargetAcquired += (_) => Target(true);
 
@@ -29,7 +29,7 @@ namespace Entities.Enemy
             entity.Events.OnStopMoving -= () => Walk(false);
             entity.Events.OnPerformingAttack -= Attack;
             entity.Events.OnTakeDamage -= (_) => Damaged();
-            entity.Events.OnDeath -= Death;
+            entity.Events.OnDying -= Death;
             entity.Events.OnTargetLost -= TargetLost;
             entity.Events.OnTargetAcquired -= (_) => Target(true);
         }

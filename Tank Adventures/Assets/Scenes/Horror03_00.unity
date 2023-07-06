@@ -2195,6 +2195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horror
       objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2670,6 +2674,10 @@ PrefabInstance:
     - target: {fileID: 8050898226330709852, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_Name
       value: Horror (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5316,6 +5324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horror (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -6297,6 +6309,10 @@ PrefabInstance:
     - target: {fileID: 8050898226330709852, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_Name
       value: Horror (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17651,6 +17667,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horror (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -19356,6 +19376,10 @@ PrefabInstance:
     - target: {fileID: 8050898226330709852, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_Name
       value: Horror (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050898227483689120, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
+      propertyPath: skyY
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8269087877653176323, guid: 24172e3d5c1e16b41a1307804dcb77c1, type: 3}
       propertyPath: m_AnchorMax.x

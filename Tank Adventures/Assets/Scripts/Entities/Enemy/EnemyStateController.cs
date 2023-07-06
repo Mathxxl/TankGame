@@ -1,5 +1,6 @@
 using System;
 using Entities.Enemy.States;
+using Entities.Entity_Systems.Weapons;
 using Entities.State_Machine;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,9 @@ namespace Entities.Enemy
     {
         public NavMeshAgent agent;
         protected bool Moving;
+
+        [SerializeField] private Weapon weapon;
+        public Weapon ThisWeapon => weapon;
         
         #region States
         
@@ -37,6 +41,7 @@ namespace Entities.Enemy
             patrolState.TargetFound -= SetChase;
             chaseState.OnPlayerLost -= SetPatrol;
             entity.GameManager.Events.OnGoalAchieved -= SetIdle;
+            entity.Events.OnDying -= SetIdle;
         }
 
         #endregion
@@ -48,7 +53,11 @@ namespace Entities.Enemy
             idleState.OnNextState += SetPatrol; //Patrol after idle
             patrolState.TargetFound += SetChase; //Chase after a target is found
             chaseState.OnPlayerLost += SetPatrol; //Patrol after target is lost
-            if(entity.GameManager != null) entity.GameManager.Events.OnGoalAchieved += SetIdle;
+            if (entity.GameManager != null)
+            {
+                entity.GameManager.Events.OnGoalAchieved += SetIdle;
+            }
+            entity.Events.OnDying += SetIdle;
         }
         #endregion
 
@@ -57,6 +66,7 @@ namespace Entities.Enemy
         //Change to Patrol State
         private void SetPatrol()
         {
+            Debug.Log("Set patrol");
             ChangeState(patrolState);
         }
 
@@ -72,6 +82,7 @@ namespace Entities.Enemy
         //Change to idle state
         protected void SetIdle()
         {
+            Debug.Log("Set idle");
             ChangeState(idleState);
         }
         

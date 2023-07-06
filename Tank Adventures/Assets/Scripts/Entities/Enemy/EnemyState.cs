@@ -1,4 +1,5 @@
 ﻿using System;
+using Entities.Entity_Systems.Weapons;
 using Entities.State_Machine;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,8 @@ namespace Entities.Enemy
     /// </summary>
     public abstract class EnemyState : State
     {
+
+        protected Weapon ThisWeapon;
         //Agent
         protected NavMeshAgent Agent;
         
@@ -28,14 +31,15 @@ namespace Entities.Enemy
         {
             base.OnEnter();
             
-            Debug.Log($"Controller = {Controller}");
+            //Debug.Log($"Controller = {Controller}");
             
             if (Controller is EnemyStateController esc)
             {
                 Agent = esc.agent;
+                ThisWeapon = esc.ThisWeapon;
             }
             
-            Debug.Log($"Controller = {Controller}");
+            //Debug.Log($"Controller = {Controller}");
         }
     }
 }

@@ -35,6 +35,7 @@ namespace LoadingScreen
         [Tooltip("Object holder for everything that should be set inactive when loading")][SerializeField] private GameObject frontHolder;
 
         [SerializeField] private bool showSplashTwice;
+        [SerializeField] private bool isNotDestroyedOnLoad;
         
         #endregion
     
@@ -94,7 +95,7 @@ namespace LoadingScreen
                     asyncOperation.allowSceneActivation = true;
                 }
 
-                if(frontHolder != null) frontHolder.SetActive(true);
+                if(frontHolder != null && isNotDestroyedOnLoad) frontHolder.SetActive(true);
                 yield return null;
             }
         }

@@ -15,7 +15,7 @@ namespace Tuto
 
         private void Awake()
         {
-            nextButton.onClick.AddListener(() => gameObject.SetActive(false));
+            nextButton.onClick.AddListener(() => Destroy(gameObject));
             if(slider != null) slider.maxValue = lifeDuration;
         }
 
@@ -35,7 +35,7 @@ namespace Tuto
                 t += Time.deltaTime;
                 yield return null;
             }
-            if(gameObject != null) gameObject.SetActive(false);
+            if(gameObject != null) Destroy(gameObject); //gameObject.SetActive(false);
         }
     }
 }

@@ -16,28 +16,28 @@ MonoBehaviour:
   stages:
   - upgradeName: Gas Gas Gas
     description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
-    technicalDescription: "D\xE9g\xE2ts += Vitesse * .5"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * .1"
     icon: {fileID: 21300000, guid: 5219ad0e9e2a1c64f805d025fafdc9ee, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
-      fixedValue: 0.5
+      fixedValue: 0.1
       percentageValue: 0
   - upgradeName: Running in the 90s
     description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
-    technicalDescription: "D\xE9g\xE2ts += Vitesse * 1"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * 0.25"
     icon: {fileID: 21300000, guid: 26da0506a31b81545bed7c0ab0da5f1e, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
-      fixedValue: 1
+      fixedValue: 0.25
       percentageValue: 0
   - upgradeName: "D\xE9j\xE0-Vu"
     description: "Les d\xE9g\xE2ts augmentent en fonction de la vitesse de d\xE9placement"
-    technicalDescription: "D\xE9g\xE2ts += Vitesse * 2"
+    technicalDescription: "D\xE9g\xE2ts += Vitesse * 0.5"
     icon: {fileID: 21300000, guid: 2bbbf31568aa24e4e82fcd6b1264a649, type: 3}
     isStatic: 0
     values:
     - valuesType: 0
-      fixedValue: 2
+      fixedValue: 0.5
       percentageValue: 0

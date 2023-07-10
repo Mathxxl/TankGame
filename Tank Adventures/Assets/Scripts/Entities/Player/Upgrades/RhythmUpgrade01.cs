@@ -121,7 +121,8 @@ namespace Entities.Player.Upgrades
                 var values = GetValues(UpgradeData.UpgradeValuesType.Damages);
                 if (values == null) return;
                 manager.ThisEntity.Events.OnImproveDamageForOneHit?.Invoke(values.Value.percentageValue);
-
+                Debug.Log("[Improve Damage event]");
+                
                 if (Level >= 2 && explosionPrefab != null)
                 {
                     Instantiate(explosionPrefab, manager.transform);

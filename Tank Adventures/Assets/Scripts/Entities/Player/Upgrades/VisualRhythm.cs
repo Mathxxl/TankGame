@@ -62,14 +62,14 @@ namespace Entities.Player.Upgrades
         {
             _currentDescriptor = newDesc;
             
-            Debug.Log($"SetCurrentDescriptor to {newDesc}");
+            //Debug.Log($"SetCurrentDescriptor to {newDesc}");
             
             //Metronome
-            if(metronomePivot.transform.GetChild(0).TryGetComponent(out RawImage image))
-            {
-                RhythmUpdated(_currentDescriptor);
-                image.color = visualTM.color;
-            }
+            if (!metronomePivot.transform.GetChild(0).TryGetComponent(out RawImage image)) return;
+            if (!_dicColors.ContainsKey(newDesc)) return;
+            
+            var elt = _dicColors[newDesc];
+            image.color = elt.rColor;
         }
 
         private void RhythmUpdated(RhythmDescriptor newDesc)
@@ -140,9 +140,8 @@ namespace Entities.Player.Upgrades
             var dir = 1;
             var step = 80 / goal;
 
-            Debug.Log($"Metronome : goal = {goal}, step = {step}, rotation = {metronomePivot.transform.rotation.eulerAngles}");
-
-            Debug.Break();
+            //Debug.Log($"Metronome : goal = {goal}, step = {step}, rotation = {metronomePivot.transform.rotation.eulerAngles}");
+            //Debug.Break();
             
             while (true)
             {
@@ -162,7 +161,7 @@ namespace Entities.Player.Upgrades
                 }
 
                 metronomePivot.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log($"change, time = {time}");
+                //Debug.Log($"change, time = {time}");
 
                 yield return new WaitForSeconds(time - goal);
 

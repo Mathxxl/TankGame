@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Interfaces;
 using Projectile;
@@ -20,7 +21,7 @@ namespace Entities.Entity_Systems.Weapons
         
         //To Improve Damages
         private Projectile.Projectile _lastProjectile;
-        private Projectile.Projectile _improvedProjectile;
+        private List<Projectile.Projectile> _improvedProjectile;
         private float _improvedTotal;
         
         #endregion
@@ -31,6 +32,7 @@ namespace Entities.Entity_Systems.Weapons
         {
             base.Awake();
             _totalDamages = damages;
+            _improvedProjectile = new List<Projectile.Projectile>();
         }
 
         protected void OnEnable()
@@ -80,10 +82,12 @@ namespace Entities.Entity_Systems.Weapons
 
         protected override void Attack()
         {
+            Debug.Log("[Attack function]");
             var temp = _pPool.Pool.Get();
             temp.weapon = this;
             
             _lastProjectile = temp;
+            Debug.Log("[Set _last projectile as temp]");
         }
 
         protected override void AttackTarget(Transform target, Subweapon subweapon = null)
@@ -94,7 +98,7 @@ namespace Entities.Entity_Systems.Weapons
             entity.Events.OnAttack?.Invoke(target);
             
             //If improved projectile improve damages
-            if (subweapon != null && _improvedProjectile == subweapon)
+            if (subweapon != null && _improvedProjectile.Contains(subweapon))
             {
                 Debug.Log($"subweapon found and improve damages; impact with {subweapon.name}");
                 damageable.TakeDamages(_improvedTotal);
@@ -113,18 +117,25 @@ namespace Entities.Entity_Systems.Weapons
 
         protected void ImproveDamagesForOneHit(float value)
         {
-            _improvedProjectile = _lastProjectile;
+            _improvedProjectile.Add(_lastProjectile);
+            _lastProjectile.OnImpact += () => ImproveOnImpact(_lastProjectile);
             _improvedTotal = _totalDamages * (1.0f + value);
 
             if (_improvedProjectile == null) return;
             
-            Debug.Log($"improved projectile is {_improvedProjectile.name}");
+            Debug.Log($"improved projectile is {_lastProjectile.name}");
         }
 
         protected void ImproveDamagesForOneHitFixed(float value)
         {
-            _improvedProjectile = _lastProjectile;
-            _improvedTotal = _totalDamages += value;
+            _improvedProjectile.Add(_lastProjectile);
+            _lastProjectile.OnImpact += () => ImproveOnImpact(_lastProjectile);
+            _improvedTotal = _totalDamages + value;
+        }
+
+        private void ImproveOnImpact(Projectile.Projectile toRemove)
+        {
+            _improvedProjectile.Remove(toRemove);
         }
 
         #endregion

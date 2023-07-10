@@ -91,8 +91,8 @@ namespace Entities.Entity_Systems.Weapons
         {
             if (IsCoolingDown) return;
             
-            entity.Events.OnPerformingAttack?.Invoke();
             Attack();
+            entity.Events.OnPerformingAttack?.Invoke();
             StartCoroutine(CoolingDown());
         }
         

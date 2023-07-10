@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Interfaces;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ namespace Entities.Player.Upgrades
     /// </remarks>
     public class FutureUpgrade02 : Upgrade
     {
+        [SerializeField] private float cooldown = 0.2f;
+        [SerializeField] private float speedFloor = 5f;
+        private bool _coolingDown;
+        
         protected override void UpgradeObtained()
         {
             manager.ThisEntity.Events.OnCollision += DamageOnCollision;
@@ -38,12 +43,17 @@ namespace Entities.Player.Upgrades
 
         private void DamageOnCollision(Collision collision)
         {
+            if (_coolingDown) return;
+            
             var target = collision.transform;
             
             if (!manager.ThisEntity.TryGetComponent(out Rigidbody rb)) return;
             if (!target.TryGetComponent(out IDamageable damageable)) return;
 
             var speed = collision.relativeVelocity.magnitude;
+
+            if (speed < speedFloor) return;
+            
             var vDamages = GetValues(UpgradeData.UpgradeValuesType.Damages);
             if (vDamages == null) return;
             
@@ -51,7 +61,18 @@ namespace Entities.Player.Upgrades
             var pDamages = vDamages.Value.percentageValue;
             var totalDamages = speed * (fDamages + pDamages);
 
+            Debug.Log($"Attack on collision with damages {totalDamages} [speed : {speed} * damages : {fDamages + pDamages}]");
+            
             damageable.TakeDamages(totalDamages);
+            
+            StartCoroutine(Cooldown());
+        }
+
+        private IEnumerator Cooldown()
+        {
+            _coolingDown = true;
+            yield return new WaitForSeconds(cooldown);
+            _coolingDown = false;
         }
     }
 }

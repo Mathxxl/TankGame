@@ -40,7 +40,10 @@ namespace Entities.Enemy
             idleState.OnNextState -= SetPatrol;
             patrolState.TargetFound -= SetChase;
             chaseState.OnPlayerLost -= SetPatrol;
-            entity.GameManager.Events.OnGoalAchieved -= SetIdle;
+
+            if (entity == null) return;
+            
+            if(entity.GameManager != null) entity.GameManager.Events.OnGoalAchieved -= SetIdle;
             entity.Events.OnDying -= SetIdle;
         }
 

@@ -19,6 +19,8 @@ namespace Entities.Player.Upgrades
         [SerializeField][Range(0f,1f)] private float rhythmFloor = 0.5f;
         [SerializeField] private GameObject visualRepresentationPrefab;
         [SerializeField] private GameObject visualRepresentationParent;
+        [SerializeField] private GameObject metronomePrefab;
+        [SerializeField] private GameObject metronomeParent;
         [SerializeField] private GameObject explosionPrefab;
         private int _currentBpm;
         private RhythmDescriptor _rhythm;
@@ -34,10 +36,17 @@ namespace Entities.Player.Upgrades
             }
         }
 
+        public float Floor => rhythmFloor;
+
         private void OnDisable()
         {
             StopCoroutine(OnRhythm());
 
+            if (_visualRepresentation != null && _visualRepresentation.TryGetComponent(out VisualRhythm vr))
+            {
+                manager.ThisEntity.Events.OnPerformingAttack -= vr.AttackPerformed;
+            }
+            
             if (manager == null) return;
             manager.ThisEntity.Events.OnPerformingAttack -= OnShoot;
             manager.ThisEntity.GameManager.Events.OnLevelReached -= SetBpm;
@@ -55,12 +64,18 @@ namespace Entities.Player.Upgrades
             //Behaviours
             StartCoroutine(OnRhythm());
             
-            //TODO : Ajouter représentation graphique
             //Visual
             if (visualRepresentationPrefab != null)
             {
                 _visualRepresentation = Instantiate(visualRepresentationPrefab, (visualRepresentationParent != null) ? visualRepresentationParent.transform : transform);
-                if (_visualRepresentation.TryGetComponent(out VisualRhythm vr)) vr.rUpgrade = this;
+                var metro = Instantiate(metronomePrefab, (metronomeParent != null) ? metronomeParent.transform : transform);
+                if (_visualRepresentation.TryGetComponent(out VisualRhythm vr))
+                {
+                    vr.rUpgrade = this;
+                    vr.metronomePivot = metro.transform.GetChild(1).gameObject;
+                    Debug.Log($"Pivot = {vr.metronomePivot.name}");
+                    manager.ThisEntity.Events.OnPerformingAttack += vr.AttackPerformed;
+                }
             }
         }
 
@@ -127,6 +142,10 @@ namespace Entities.Player.Upgrades
         private void SetBpm()
         {
             _currentBpm = GetBpm();
+            if (_visualRepresentation != null && _visualRepresentation.TryGetComponent(out VisualRhythm vr))
+            {
+                vr.StartMetronome(_currentBpm);
+            }
         }
         
         /// <summary>

@@ -624,11 +624,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 169270475ca20f2418d4e9e9bc946e00, type: 2}
   manager: {fileID: 0}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 205977845}
   rhythmFloor: 0.5
   visualRepresentationPrefab: {fileID: 4925402294044884307, guid: 7fb43a3f212be364d98365c6ce32029e, type: 3}
-  visualRepresentationParent: {fileID: 1272247772}
-  explosionPrefab: {fileID: 0}
+  visualRepresentationParent: {fileID: 4504688493449014675}
+  metronomePrefab: {fileID: 1103466282498679387, guid: 0bbc21ba52a10474c9b81213ab453643, type: 3}
+  metronomeParent: {fileID: 460897073}
+  explosionPrefab: {fileID: 4703063241919321193, guid: 1cbbe71da3d20284bb86bf2d21b87431, type: 3}
 --- !u!114 &142505432 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4504688492435850352, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
@@ -8063,15 +8065,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314228157508103723, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5314228157508103723, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5314228157508103723, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5545434719393430593, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8258,5 +8260,10 @@ PrefabInstance:
 --- !u!4 &4504688493449014674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4504688493151079794, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+  m_PrefabInstance: {fileID: 4504688493449014673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4504688493449014675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3658517636020338136, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
   m_PrefabInstance: {fileID: 4504688493449014673}
   m_PrefabAsset: {fileID: 0}

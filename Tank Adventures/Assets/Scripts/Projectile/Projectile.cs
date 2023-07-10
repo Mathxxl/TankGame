@@ -120,7 +120,7 @@ namespace Projectile
         #region Protected Methods
 
         //Move by adding foward speed to its Rigidbody
-        protected virtual void Move()
+        public virtual void Move()
         {
             Rb.velocity =  speed * transform.forward;
         }

@@ -1,4 +1,6 @@
-﻿namespace Entities.Player.Upgrades
+﻿using UnityEngine;
+
+namespace Entities.Player.Upgrades
 {
     /// <summary>
     /// Upgrade 01 of the Future World
@@ -10,6 +12,8 @@
     /// </remarks>
     public class FutureUpgrade01 : Upgrade
     {
+        [SerializeField] private GameObject deflectZonePrefab;
+        
         protected override void UpgradeObtained(){}
 
         protected override void UpgradeUpdate(){}
@@ -26,7 +30,7 @@
         
         private void SetupSendBackAttacks()
         {
-            //TODO : En cas d'OnAttacked, possibilité de renvoyer le projectile (=> donc vraisemblablement désactiver le projectile ennemi et en créer une copie opposée)    
+            Instantiate(deflectZonePrefab, manager.ThisEntity.transform);
         }
     }
 }

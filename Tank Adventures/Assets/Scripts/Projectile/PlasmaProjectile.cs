@@ -7,6 +7,7 @@ namespace Projectile
     {
         [SerializeField] private GameObject plasmaLaser;
         private GameObject _plasma;
+        public GameObject Plasma => _plasma;
         
         
         protected override void OnEnable()

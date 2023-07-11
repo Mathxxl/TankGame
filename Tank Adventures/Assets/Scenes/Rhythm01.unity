@@ -295,7 +295,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375774065}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &375774067
 Camera:
   m_ObjectHideFlags: 0
@@ -1738,6 +1738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2235576754567149666}
   agent: {fileID: 2235576754567149689}
+  weapon: {fileID: 0}
   patrolState:
     patrolSpeed: 3
     patrolRotSpeed: 120
@@ -1798,6 +1799,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   voidY: -100
+  skyY: 20
   stayGrounded: 0
   maxHeight: 0
 --- !u!114 &2235576754567149695
@@ -2212,6 +2214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2235576754567149666}
   agent: {fileID: 2235576754567149689}
+  weapon: {fileID: 0}
   patrolState:
     patrolSpeed: 5
     patrolRotSpeed: 120

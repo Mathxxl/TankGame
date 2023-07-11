@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 474599148928425311, guid: bc568d07269260d4185fa82a2903986c, type: 3}
+      propertyPath: MaxDistance
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2343975026518059121, guid: bc568d07269260d4185fa82a2903986c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -137,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 2235576753902780024}
   agent: {fileID: 2235576753902780003}
+  weapon: {fileID: 0}
   patrolState:
     patrolSpeed: 5
     patrolRotSpeed: 120

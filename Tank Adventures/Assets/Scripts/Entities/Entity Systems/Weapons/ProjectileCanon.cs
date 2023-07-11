@@ -82,12 +82,12 @@ namespace Entities.Entity_Systems.Weapons
 
         protected override void Attack()
         {
-            Debug.Log("[Attack function]");
+            //Debug.Log("[Attack function]");
             var temp = _pPool.Pool.Get();
             temp.weapon = this;
             
             _lastProjectile = temp;
-            Debug.Log("[Set _last projectile as temp]");
+            //Debug.Log("[Set _last projectile as temp]");
         }
 
         protected override void AttackTarget(Transform target, Subweapon subweapon = null)
@@ -123,7 +123,7 @@ namespace Entities.Entity_Systems.Weapons
 
             if (_improvedProjectile == null) return;
             
-            Debug.Log($"improved projectile is {_lastProjectile.name}");
+            //Debug.Log($"improved projectile is {_lastProjectile.name}");
         }
 
         protected void ImproveDamagesForOneHitFixed(float value)

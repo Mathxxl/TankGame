@@ -18,6 +18,18 @@ namespace GameManagers
         private MusicContainer _currentMusic;
         public MusicContainer CurrentMusic => _currentMusic;
 
+        private void Start()
+        {
+            if (audioSource == null) return;
+            audioSource.Play();
+            Debug.Log($"Playing : {audioSource.isPlaying}");
+            
+        }
+
+        /*private void Update()
+        {
+            Debug.Log($"Playing : {audioSource.isPlaying}");
+        }*/
 
         private void OnEnable()
         {

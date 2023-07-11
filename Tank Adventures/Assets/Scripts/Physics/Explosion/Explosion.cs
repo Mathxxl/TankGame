@@ -40,7 +40,7 @@ namespace Physics.Explosion
                 if (col.gameObject.TryGetComponent(out MortalEntity mortalEntity) && mortalEntity.Invincible) continue;
                 
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-                //Debug.Log($"Add force on {col.gameObject.name} of value {explosionForce}");
+                Debug.Log($"Add force on {col.gameObject.name} of value {explosionForce}");
             }
         }
     }

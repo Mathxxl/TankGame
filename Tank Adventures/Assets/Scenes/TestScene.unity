@@ -2196,6 +2196,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5563263300460324961, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
   m_PrefabInstance: {fileID: 4504688493449014673}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &460897074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8278926500714625104, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+  m_PrefabInstance: {fileID: 4504688493449014673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460897073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614e0e744c354cf48d5435f8678d7bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &471035499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4126,7 +4137,7 @@ MonoBehaviour:
     description: Kill all the enemies or reach the goal point in time to progress
       through the levels. Your objective is to reach the final level and vainquish
       its boss.
-    position: {x: 600, y: -300}
+    position: {x: -550, y: 300}
   - nameID: UpgradeTuto
     description: Each time you finish a level, you'll be granted an upgrade of your
       choice based on the world you are visiting. Choose it wisely !
@@ -4331,7 +4342,7 @@ Transform:
   - {fileID: 838397417}
   - {fileID: 2076791172}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1068672246 stripped
 RectTransform:
@@ -4886,7 +4897,7 @@ MonoBehaviour:
   bonusParameters:
   - sceneName: Race01
     hasChrono: 1
-    startTime: 6000
+    startTime: 60
     goalTime: 0
   - sceneName: Race02_00
     hasChrono: 1
@@ -5442,7 +5453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1272247773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7032,7 +7043,7 @@ Transform:
   - {fileID: 4504688493449014674}
   - {fileID: 148764075}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738280412
 GameObject:
@@ -8289,6 +8300,10 @@ PrefabInstance:
       propertyPath: speed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4504688492435850353, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+      propertyPath: maxSpeedFactor
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4504688493151079794, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -8409,6 +8424,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5535333357285649398, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 460897074}
     - target: {fileID: 5545434719393430593, guid: eb58661092ab4114a88277c66ae735f4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -372,7 +372,7 @@ LightingSettings:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   serializedVersion: 4
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 801045650}
   - component: {fileID: 801045652}
   - component: {fileID: 801045651}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_0_0_37fab831-a6cc-45a7-b3c1-042585df72ed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3166,7 +3166,7 @@ GameObject:
   - component: {fileID: 1407514251}
   - component: {fileID: 1407514250}
   - component: {fileID: 1407514249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(0.00, 0.00, -100.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

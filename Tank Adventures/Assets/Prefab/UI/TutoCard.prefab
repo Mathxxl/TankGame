@@ -443,7 +443,7 @@ MonoBehaviour:
   text: {fileID: 8617458365892344573}
   nextButton: {fileID: 8617458364280832373}
   slider: {fileID: 8617458365097359010}
-  lifeDuration: 20
+  lifeDuration: 30
 --- !u!1 &8617458365015007646
 GameObject:
   m_ObjectHideFlags: 0

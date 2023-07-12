@@ -18,6 +18,7 @@
         protected override void LevelReached()
         {
             manager.GManager.Events.OnZoneStart?.Invoke();
+            manager.GManager.Events.OnFreeZoneReached?.Invoke();
         }
     }
 }

@@ -1112,7 +1112,7 @@ GameObject:
   - component: {fileID: 125876769}
   - component: {fileID: 125876768}
   - component: {fileID: 125876767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(-100.00, 0.00, 0.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2474,7 +2474,7 @@ GameObject:
   - component: {fileID: 384229309}
   - component: {fileID: 384229311}
   - component: {fileID: 384229310}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2594,7 +2594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 436661716}
   - component: {fileID: 436661715}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TerrainGroup_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4236,7 +4236,7 @@ GameObject:
   - component: {fileID: 691498957}
   - component: {fileID: 691498956}
   - component: {fileID: 691498955}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(0.00, 0.00, -100.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12720,7 +12720,7 @@ GameObject:
   - component: {fileID: 1900563139}
   - component: {fileID: 1900563138}
   - component: {fileID: 1900563137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(0.00, 0.00, 100.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13092,7 +13092,7 @@ GameObject:
   - component: {fileID: 1964466485}
   - component: {fileID: 1964466484}
   - component: {fileID: 1964466483}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_(100.00, 0.00, 0.00)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -24,14 +24,14 @@ namespace Entities.Entity_Systems
         [Tooltip("Hauteur du vide en Y")]
         [SerializeField] private float voidY; //hauteur du vide en Y
 
-        [SerializeField] private float skyY = 20;
+        [SerializeField] public float skyY = 20;
 
         private Transform _myTransform;
         private Quaternion _registeredRotation;
         private Vector3 _registeredPosition;
 
-        public bool stayGrounded;
-        public float maxHeight;
+        public bool stayGrounded = true;
+        public float maxHeight = 3f;
 
         #endregion
 
@@ -108,12 +108,15 @@ namespace Entities.Entity_Systems
         
         private void CheckGround()
         {
+            //Debug.Log("Check Ground");
             RaycastHit hit;
             const int layerMask = 1 << 3;
             if (!UnityEngine.Physics.Raycast(entity.transform.position, -entity.transform.up, out hit, Mathf.Infinity,
                     layerMask)) return;
+            //Debug.Log($"Check Ground Raycast -> hit.distance = {hit.distance} vs max = {maxHeight}");
             if (hit.distance > maxHeight)
             {
+                //Debug.Log("Force Ground");
                 ForceGround();
             }
         }
@@ -179,8 +182,13 @@ namespace Entities.Entity_Systems
         private void ForceGround()
         {
             if (!entity.TryGetComponent(out Rigidbody rb)) return;
-            
-            rb.AddForce(Vector3.down * rb.velocity.magnitude, ForceMode.Impulse);
+
+            var rbVel = rb.velocity;
+            rb.velocity = new Vector3(rbVel.x, 0, rbVel.z);
+            Debug.Log($"Rb velocity = {rbVel}");
+            rb.AddForce(Vector3.down * (rbVel.magnitude * 1), ForceMode.Impulse);
+            Debug.Log($"Force added = {Vector3.down * (rbVel.magnitude * 1)}");
+            Debug.Log($"Rb velocity = {rbVel}");
         }
 
         private void ResetPlayerPosition()
@@ -199,6 +207,12 @@ namespace Entities.Entity_Systems
         public void RegisterCurrentTransform()
         {
             _registeredPosition = _myTransform.position;
+
+            if (_registeredPosition.y >= skyY)
+            {
+                _registeredPosition = new Vector3(_registeredPosition.x, 0, _registeredPosition.z);
+            }
+            
             _registeredRotation = _myTransform.rotation;
         }
 

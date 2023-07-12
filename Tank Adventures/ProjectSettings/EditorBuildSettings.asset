@@ -29,28 +29,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalLevel.unity
     guid: 26d99fe06769b344a9e105791e3b476e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Future02.unity
     guid: 46884e895b4362c418b98b73e59b28f6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Future03.unity
     guid: c1e5be0e6da68424e9a172dd66478cd5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Horror02.unity
     guid: 3f836128ac54163479be19b5c13f5712
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Horror03.unity
     guid: fea47c26e38038242956680d00cf6c29
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Race02.unity
     guid: 39eb050217e46cb48a88f6edc9115b14
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Race03.unity
     guid: a156324a6fe159c4ea2b991f4b8180df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Rhythm02.unity
     guid: c96fdd9bf158d2d4a9530642ab3147dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Rhythm03.unity
     guid: 89eb33c556459ed49846fd7245542a7f
   - enabled: 1

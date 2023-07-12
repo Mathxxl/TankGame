@@ -1,9 +1,10 @@
-﻿namespace CustomEditor
-{
-    using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using System.Collections.Generic;
- 
+using UnityEngine;
+
+namespace Editor
+{
+    
 //Original by DYLAN ENGELMAN http://jupiterlighthousestudio.com/custom-inspectors-unity/
 //Altered by Brecht Lecluyse https://www.brechtos.com
 

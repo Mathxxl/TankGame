@@ -29,6 +29,8 @@ namespace World
         [SerializeField] private Chrono chrono;
         [SerializeField] private TextMeshProUGUI textPreparation;
         private PlayerDetector _goalPoint;
+        private float _memMaxHeight;
+        private float _memSky;
 
         protected override void OnAwake()
         {
@@ -50,7 +52,10 @@ namespace World
             {
                 Debug.Log("stay grounded = true");
                 stabilizer.stayGrounded = true;
+                _memMaxHeight = stabilizer.maxHeight;
                 stabilizer.maxHeight = 1.0f;
+                _memSky = stabilizer.skyY;
+                stabilizer.skyY = 4f;
             }
 
             ChangeCameraMode(CameraMode.Race);
@@ -70,7 +75,9 @@ namespace World
             //Others
             if (manager.GManager.Player.transform.GetChild(0).TryGetComponent(out Stabilizer stabilizer))
             {
-                stabilizer.stayGrounded = false;
+                //stabilizer.stayGrounded = false;
+                stabilizer.maxHeight = _memMaxHeight;
+                stabilizer.skyY = _memSky;
             }
             
             ChangeCameraMode(CameraMode.Normal);

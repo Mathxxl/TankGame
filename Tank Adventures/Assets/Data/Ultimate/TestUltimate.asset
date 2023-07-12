@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab7235afb4f4f069f2c851f5ba55cd2, type: 3}
   m_Name: TestUltimate
   m_EditorClassIdentifier: 
-  cooldown: 15
+  type: 0
+  cooldown: 60
   damages: 0
   damagesPercentage: 0
-  duration: 15
+  duration: 10
   heal: 0
   healPercentage: 0

@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 1525521312}
   - component: {fileID: 1525521314}
   - component: {fileID: 1525521313}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_0_0_b6708fed-f07c-4a5e-9549-4a7daaf1be36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1713021574}
   - component: {fileID: 1713021573}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TerrainGroup_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,6 +1581,7 @@ MonoBehaviour:
   entityDefense: {fileID: 0}
   toDestroy: {fileID: 1211106917506863627}
   invincibilityTime: 0.5
+  destroyOnDeath: 1
 --- !u!1 &1211106918794051053
 GameObject:
   m_ObjectHideFlags: 0

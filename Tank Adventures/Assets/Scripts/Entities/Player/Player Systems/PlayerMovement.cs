@@ -18,7 +18,7 @@ namespace Entities.Player.Player_Systems
 
         [SerializeField] private float speed = 15f;
         [SerializeField] private float turnSpeed = 180f;
-        [SerializeField] private float maxSpeedFactor = 4f;
+        [SerializeField] private float maxSpeedFactor = 1/4f;
 
         public bool canRotate = true;
         
@@ -93,6 +93,7 @@ namespace Entities.Player.Player_Systems
             if (_rb.velocity.magnitude > speed * maxSpeedFactor)
             {
                 Debug.Log($"LIMITING SPEED : {_rb.velocity.magnitude} vs {speed*maxSpeedFactor}");
+                return;
             }
 
             if (!canRotate)

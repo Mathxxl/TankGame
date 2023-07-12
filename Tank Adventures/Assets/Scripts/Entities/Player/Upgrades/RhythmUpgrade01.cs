@@ -25,6 +25,7 @@ namespace Entities.Player.Upgrades
         private int _currentBpm;
         private RhythmDescriptor _rhythm;
         private GameObject _visualRepresentation;
+        private Coroutine _onRhythmRoutine;
 
         public RhythmDescriptor Rhythm
         {
@@ -49,7 +50,7 @@ namespace Entities.Player.Upgrades
             
             if (manager == null) return;
             manager.ThisEntity.Events.OnPerformingAttack -= OnShoot;
-            manager.ThisEntity.GameManager.Events.OnLevelReached -= SetBpm;
+            manager.ThisEntity.GameManager.Events.OnLevelReached -= LevelChanged;
         }
 
         protected override void UpgradeObtained()
@@ -59,7 +60,7 @@ namespace Entities.Player.Upgrades
 
             //Events linkage
             manager.ThisEntity.Events.OnPerformingAttack += OnShoot;
-            manager.ThisEntity.GameManager.Events.OnLevelReached += SetBpm;
+            manager.ThisEntity.GameManager.Events.OnLevelReached += LevelChanged;
             
             //Behaviours
             StartCoroutine(OnRhythm());
@@ -147,6 +148,14 @@ namespace Entities.Player.Upgrades
             {
                 vr.StartMetronome(_currentBpm);
             }
+        }
+
+        private void LevelChanged()
+        {
+            SetBpm();
+            if (_onRhythmRoutine == null) return;
+            StopCoroutine(_onRhythmRoutine);
+            _onRhythmRoutine = StartCoroutine(OnRhythm());
         }
         
         /// <summary>

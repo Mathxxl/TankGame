@@ -33,6 +33,7 @@ namespace Entities.Entity_Systems
             entity.Events.OnStartMoving += Moving;
             entity.Events.OnStopMoving += StopMoving;
             entity.Events.OnPerformingAttack += Shoot;
+            entity.Events.OnAttackHit += AttackHit;
         }
 
         private void OnDisable()
@@ -40,6 +41,7 @@ namespace Entities.Entity_Systems
             entity.Events.OnStartMoving -= Moving;
             entity.Events.OnStopMoving -= StopMoving;
             entity.Events.OnPerformingAttack -= Shoot;
+            entity.Events.OnAttackHit -= AttackHit;
         }
 
         private void Update()
@@ -157,6 +159,12 @@ namespace Entities.Entity_Systems
             var elt = GetElementByName("MoveSound");
             if (elt == null) return;
             elt.Value.source.volume = _initVolumeMove;
+        }
+
+        private void AttackHit()
+        {
+            var elt = GetElementByName("HitSound"); 
+            elt?.source.Play();
         }
     }
 }

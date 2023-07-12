@@ -21,6 +21,8 @@ namespace Entities
         [Header("Parameters")]
         [SerializeField] private float invincibilityTime = 0.5f; //how long is the entity invincible after receiving a hit
 
+        [SerializeField] private bool destroyOnDeath = true;
+        
         private bool _invincible;
 
         public bool Invincible
@@ -39,6 +41,12 @@ namespace Entities
 
         public void DestroyObject()
         {
+            if (!destroyOnDeath)
+            {
+                gameObject.SetActive(false);
+                if(toDestroy != null) toDestroy.SetActive(false);
+                return;
+            }
             Destroy(gameObject);
             if(toDestroy != null) Destroy(toDestroy);
         }

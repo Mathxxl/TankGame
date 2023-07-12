@@ -14,6 +14,7 @@ namespace Physics.Explosion
         [SerializeField] private float explosionRadius = 10f;
         [SerializeField] private ParticleSystem explosionEffect;
         [SerializeField][TagSelector] private string[] toExcludeTags;
+        [SerializeField] private AudioSource audioSource;
         
         private Collider[] _colliders = new Collider[20];
 
@@ -29,6 +30,11 @@ namespace Physics.Explosion
             if (explosionEffect != null)
             {
                 explosionEffect.Play();
+            }
+
+            if (audioSource != null)
+            {
+                audioSource.Play();
             }
 
             var nColliders = UnityEngine.Physics.OverlapSphereNonAlloc(transform.position, explosionRadius, _colliders);

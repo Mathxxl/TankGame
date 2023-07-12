@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   entityName: Boss
-  lifePoint: 10
-  attack: 2
+  lifePoint: 30
+  attack: 3
   attackSpeed: 1
   defense: 0
   speed: 100

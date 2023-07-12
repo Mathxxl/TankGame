@@ -117,6 +117,7 @@ MonoBehaviour:
   lifeDuration: 1
   size: 0.5
   explosionPrefab: {fileID: 4703063241919321193, guid: 1cbbe71da3d20284bb86bf2d21b87431, type: 3}
+  audioSource: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!54 &-6886749476050298141
 Rigidbody:

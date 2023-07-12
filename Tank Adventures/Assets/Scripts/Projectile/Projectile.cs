@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Linq;
-using Entities;
-using Entities.Entity_Systems;
 using Entities.Entity_Systems.Weapons;
 using Interfaces;
 using Physics.Explosion;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Projectile
 {

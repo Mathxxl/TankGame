@@ -50,6 +50,9 @@ namespace Entities.Player.Player_Systems
             //Slider
             _sliderRectTransform = slider.transform as RectTransform;
             if (_sliderRectTransform != null) _refWidthSlider = _sliderRectTransform.sizeDelta.x;
+            
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         #endregion

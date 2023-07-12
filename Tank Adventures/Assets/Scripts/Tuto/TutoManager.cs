@@ -28,6 +28,9 @@ namespace Tuto
         {
             //card.gameObject.SetActive(false);
             CreateDic();
+            
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         private void OnEnable()
@@ -74,7 +77,6 @@ namespace Tuto
             card.gameObject.transform.localPosition = _currentData.position;
 
             card.gameObject.SetActive(true);
-            StartCoroutine(card.Lifetime());
         }
 
         private bool GetDataByName(string tutoName)

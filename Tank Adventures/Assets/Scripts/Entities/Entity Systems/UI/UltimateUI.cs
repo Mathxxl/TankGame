@@ -22,11 +22,13 @@ namespace Entities.Entity_Systems.UI
         private void OnEnable()
         {
             controller.Entity.Events.OnUltimateCoolingDown += UpdateUltimateWindow;
+            controller.Entity.GameManager.Events.OnLevelReached += ResetCooldown;
         }
 
         private void OnDisable()
         {
             controller.Entity.Events.OnUltimateCoolingDown -= UpdateUltimateWindow;
+            controller.Entity.GameManager.Events.OnLevelReached -= ResetCooldown;
         }
 
         #endregion
@@ -49,6 +51,11 @@ namespace Entities.Entity_Systems.UI
                 ultimateWindowCooldown.fillAmount -= step * Time.deltaTime;
                 yield return null;
             }
+        }
+
+        private void ResetCooldown()
+        {
+            ultimateWindowCooldown.fillAmount = 0;
         }
 
         #endregion

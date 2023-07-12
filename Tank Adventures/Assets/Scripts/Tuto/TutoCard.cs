@@ -12,11 +12,17 @@ namespace Tuto
         [SerializeField] private Button nextButton;
         [SerializeField] private Slider slider;
         [SerializeField] private float lifeDuration = 3.0f;
+        private bool _isEnded = false;
 
         private void Awake()
         {
-            nextButton.onClick.AddListener(OnTutoEnd);
+            nextButton.onClick.AddListener(ButtonEnd);
             if(slider != null) slider.maxValue = lifeDuration;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(TutoEnabled());
         }
 
         public void Set(string newText)
@@ -35,13 +41,25 @@ namespace Tuto
                 t += Time.deltaTime;
                 yield return null;
             }
-            OnTutoEnd();
+
+            if (!_isEnded)
+            {
+                Destroy(gameObject);
+            }
         }
 
-        private void OnTutoEnd()
+        private void ButtonEnd()
         {
-            StopAllCoroutines();
-            if(gameObject != null) Destroy(gameObject);
+            if (_isEnded) return;
+            Destroy(gameObject);
+            _isEnded = true;
         }
+
+        private IEnumerator TutoEnabled()
+        {
+            yield return null;
+            StartCoroutine(Lifetime());
+        }
+        
     }
 }

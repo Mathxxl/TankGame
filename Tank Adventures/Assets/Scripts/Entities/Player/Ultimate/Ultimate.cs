@@ -11,14 +11,25 @@ namespace Entities.Player.Ultimate
     { 
         [SerializeField] protected UltimateData data;
         protected bool IsCoolingDown;
+        protected Coroutine CooldownRoutine;
         public WorldType Type => data.type;
 
-       protected void OnUltimate()
+        protected void OnEnable()
+        {
+            entity.GameManager.Events.OnLevelReached += LevelReached;
+        }
+
+        protected void OnDisable()
+        {
+            entity.GameManager.Events.OnLevelReached -= LevelReached;
+        }
+
+        protected void OnUltimate()
        {
            if (IsCoolingDown) return;
            entity.Events.OnUltimateUsed?.Invoke(this);
            DoUltimate();
-           StartCoroutine(CoolingDown());
+           CooldownRoutine = StartCoroutine(CoolingDown());
        }
        
        protected virtual void DoUltimate(){}
@@ -28,6 +39,12 @@ namespace Entities.Player.Ultimate
            IsCoolingDown = true;
            entity.Events.OnUltimateCoolingDown?.Invoke(data.cooldown);
            yield return new WaitForSeconds(data.cooldown);
+           IsCoolingDown = false;
+       }
+
+       private void LevelReached()
+       {
+           if(CooldownRoutine != null) StopCoroutine(CooldownRoutine);
            IsCoolingDown = false;
        }
     }

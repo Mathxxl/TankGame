@@ -42,6 +42,7 @@ namespace Entities.State_Machine
         //Change to newState by exiting currentState, changing its value and entering the new state
         protected void ChangeState(State newState)
         {
+            Debug.Log($"Changing state to {newState}");
             _currentState?.OnStateExit();
             _currentState = newState;
             _currentState.OnStateEnter(this);

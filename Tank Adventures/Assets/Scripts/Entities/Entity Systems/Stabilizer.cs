@@ -185,10 +185,10 @@ namespace Entities.Entity_Systems
 
             var rbVel = rb.velocity;
             rb.velocity = new Vector3(rbVel.x, 0, rbVel.z);
-            Debug.Log($"Rb velocity = {rbVel}");
+            //Debug.Log($"Rb velocity = {rbVel}");
             rb.AddForce(Vector3.down * (rbVel.magnitude * 1), ForceMode.Impulse);
-            Debug.Log($"Force added = {Vector3.down * (rbVel.magnitude * 1)}");
-            Debug.Log($"Rb velocity = {rbVel}");
+            //Debug.Log($"Force added = {Vector3.down * (rbVel.magnitude * 1)}");
+            //Debug.Log($"Rb velocity = {rbVel}");
         }
 
         private void ResetPlayerPosition()

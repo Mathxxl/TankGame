@@ -14,7 +14,12 @@ namespace GameManagers
         [SerializeField] private TextMeshProUGUI tmHolder;
 
         [SerializeField] [TextArea] private string loseText;
-        
+
+        private void Start()
+        {
+            endScreen.SetActive(false);
+        }
+
         private void OnEnable()
         {
             gameManager.Events.OnPlayerKilled += PlayerLost;

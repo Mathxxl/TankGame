@@ -62,6 +62,60 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleUpgrade"",
+                    ""type"": ""Button"",
+                    ""id"": ""33e17af6-dbc0-42db-a0b9-b77a623842ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TogglePlayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0999a48-bb78-436f-b803-fae91f0e6884"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleEndScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""44039412-de3a-440f-8be8-e42c5e39bc83"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleOthers"",
+                    ""type"": ""Button"",
+                    ""id"": ""0346322a-9594-4b44-98f3-e32cbf420e30"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleStats"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c4432e4-7f51-4658-a5a8-426e849b8199"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TogglePortal"",
+                    ""type"": ""Button"",
+                    ""id"": ""75c4353a-6ead-4f44-bede-e81f68547945"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +294,72 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""action"": ""StatsMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9d9b00a-d588-402d-ac26-6648568d14cc"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3482b964-2c16-48b4-965a-3ebc9127317b"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TogglePlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac7c41e5-f81f-47d3-ab52-f270a327244b"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleEndScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed861dfa-1deb-4bad-a36e-e6ef5c677c17"",
+                    ""path"": ""<Keyboard>/f5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleOthers"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91bcd177-c97f-4e0a-852c-a115af0bbcc3"",
+                    ""path"": ""<Keyboard>/f6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleStats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58aa01e2-d4ae-441f-a17d-6fae93edc284"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TogglePortal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -285,6 +405,12 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Ultimate = m_Player.FindAction("Ultimate", throwIfNotFound: true);
         m_Player_StatsMenu = m_Player.FindAction("StatsMenu", throwIfNotFound: true);
+        m_Player_ToggleUpgrade = m_Player.FindAction("ToggleUpgrade", throwIfNotFound: true);
+        m_Player_TogglePlayer = m_Player.FindAction("TogglePlayer", throwIfNotFound: true);
+        m_Player_ToggleEndScreen = m_Player.FindAction("ToggleEndScreen", throwIfNotFound: true);
+        m_Player_ToggleOthers = m_Player.FindAction("ToggleOthers", throwIfNotFound: true);
+        m_Player_ToggleStats = m_Player.FindAction("ToggleStats", throwIfNotFound: true);
+        m_Player_TogglePortal = m_Player.FindAction("TogglePortal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,6 +474,12 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Ultimate;
     private readonly InputAction m_Player_StatsMenu;
+    private readonly InputAction m_Player_ToggleUpgrade;
+    private readonly InputAction m_Player_TogglePlayer;
+    private readonly InputAction m_Player_ToggleEndScreen;
+    private readonly InputAction m_Player_ToggleOthers;
+    private readonly InputAction m_Player_ToggleStats;
+    private readonly InputAction m_Player_TogglePortal;
     public struct PlayerActions
     {
         private @CustomInput m_Wrapper;
@@ -356,6 +488,12 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Ultimate => m_Wrapper.m_Player_Ultimate;
         public InputAction @StatsMenu => m_Wrapper.m_Player_StatsMenu;
+        public InputAction @ToggleUpgrade => m_Wrapper.m_Player_ToggleUpgrade;
+        public InputAction @TogglePlayer => m_Wrapper.m_Player_TogglePlayer;
+        public InputAction @ToggleEndScreen => m_Wrapper.m_Player_ToggleEndScreen;
+        public InputAction @ToggleOthers => m_Wrapper.m_Player_ToggleOthers;
+        public InputAction @ToggleStats => m_Wrapper.m_Player_ToggleStats;
+        public InputAction @TogglePortal => m_Wrapper.m_Player_TogglePortal;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -377,6 +515,24 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @StatsMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
                 @StatsMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
                 @StatsMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStatsMenu;
+                @ToggleUpgrade.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleUpgrade;
+                @ToggleUpgrade.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleUpgrade;
+                @ToggleUpgrade.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleUpgrade;
+                @TogglePlayer.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePlayer;
+                @TogglePlayer.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePlayer;
+                @TogglePlayer.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePlayer;
+                @ToggleEndScreen.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleEndScreen;
+                @ToggleEndScreen.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleEndScreen;
+                @ToggleEndScreen.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleEndScreen;
+                @ToggleOthers.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleOthers;
+                @ToggleOthers.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleOthers;
+                @ToggleOthers.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleOthers;
+                @ToggleStats.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleStats;
+                @ToggleStats.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleStats;
+                @ToggleStats.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleStats;
+                @TogglePortal.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePortal;
+                @TogglePortal.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePortal;
+                @TogglePortal.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePortal;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -393,6 +549,24 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @StatsMenu.started += instance.OnStatsMenu;
                 @StatsMenu.performed += instance.OnStatsMenu;
                 @StatsMenu.canceled += instance.OnStatsMenu;
+                @ToggleUpgrade.started += instance.OnToggleUpgrade;
+                @ToggleUpgrade.performed += instance.OnToggleUpgrade;
+                @ToggleUpgrade.canceled += instance.OnToggleUpgrade;
+                @TogglePlayer.started += instance.OnTogglePlayer;
+                @TogglePlayer.performed += instance.OnTogglePlayer;
+                @TogglePlayer.canceled += instance.OnTogglePlayer;
+                @ToggleEndScreen.started += instance.OnToggleEndScreen;
+                @ToggleEndScreen.performed += instance.OnToggleEndScreen;
+                @ToggleEndScreen.canceled += instance.OnToggleEndScreen;
+                @ToggleOthers.started += instance.OnToggleOthers;
+                @ToggleOthers.performed += instance.OnToggleOthers;
+                @ToggleOthers.canceled += instance.OnToggleOthers;
+                @ToggleStats.started += instance.OnToggleStats;
+                @ToggleStats.performed += instance.OnToggleStats;
+                @ToggleStats.canceled += instance.OnToggleStats;
+                @TogglePortal.started += instance.OnTogglePortal;
+                @TogglePortal.performed += instance.OnTogglePortal;
+                @TogglePortal.canceled += instance.OnTogglePortal;
             }
         }
     }
@@ -421,5 +595,11 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnUltimate(InputAction.CallbackContext context);
         void OnStatsMenu(InputAction.CallbackContext context);
+        void OnToggleUpgrade(InputAction.CallbackContext context);
+        void OnTogglePlayer(InputAction.CallbackContext context);
+        void OnToggleEndScreen(InputAction.CallbackContext context);
+        void OnToggleOthers(InputAction.CallbackContext context);
+        void OnToggleStats(InputAction.CallbackContext context);
+        void OnTogglePortal(InputAction.CallbackContext context);
     }
 }

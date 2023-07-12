@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,8 +38,7 @@ namespace GameManagers
         {
             //Events.OnFirstGameStart?.Invoke();
             //Events.OnLevelReached?.Invoke(); //should be done by th sceneManagerOnSceneLoaded
-            Events.OnZoneStart?.Invoke();
-            Events.OnLevelStart?.Invoke();
+            StartCoroutine(DecalStart());
         }
 
         private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
@@ -62,6 +62,13 @@ namespace GameManagers
         {
             Events.OnWorldChosen?.Invoke(WorldType.Final);
             Events.OnFinalWorldReached?.Invoke();
+        }
+
+        private IEnumerator DecalStart()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Events.OnZoneStart?.Invoke();
+            Events.OnLevelStart?.Invoke();
         }
     }
 }
